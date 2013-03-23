@@ -1,0 +1,1 @@
+Placeholder for assets, generally sound/images.  Not kept in repo because of size.

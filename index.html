@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Plan 10 from Outer Space!</title>
+        <script type="text/javascript" charset="utf-8" src='vendor/javelin.js'></script>
+        <script type="text/javascript" charset="utf-8" src='build/plan10.js'></script>
+        <style>
+            #game {
+                height: 768px;
+                width: 1024px;
+            }
+        </style>
+        <script>
+            window.onload = function() {
+                var engine = new Javelin.Engine(new Javelin.Env.Browser(), Plan10.config);
+                engine.loadScene('plan10.test_scene', function() {
+                    engine.run();
+                });
+            };
+        </script>
+    </head>
+    <body>
+        <!-- TODO: frame the game area with movie theater -->
+        <div id='game'>
+        </div>
+    </body>
+</html>
