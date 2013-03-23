@@ -1,12 +1,12 @@
 'use strict';
 
 //just to experiment with creating multiple game objects
-Plan10.Component.RobotManager = function(go, comp) {
+Plan10.Component.RobotManager = function(gameObject, component) {
     //public api w/ default values
-    comp.maxRobots = 100;
-    comp.createDelay = 10;
-    comp.destroyDelay = 10;
-    comp.robotPrefab = null;
+    component.maxRobots = 100;
+    component.createDelay = 10;
+    component.destroyDelay = 10;
+    component.robotPrefab = null;
     
     //private
     var lastTimeCreated = 0;
@@ -17,20 +17,20 @@ Plan10.Component.RobotManager = function(go, comp) {
     var creating = true;
     var numCreated = 0;
     
-    comp.$on('create', function() {
+    component.$on('engine.create', function() {
         console.log("Manager created!");
     });
     
     //behavior
-    comp.$on('update', function(deltaTime) {
-        var time = go.engine.time;
+    component.$on('engine.update', function(deltaTime) {
+        var time = gameObject.engine.time;
         
         //create a new robot
-        if (creating && time >= lastTimeCreated + comp.createDelay) {
+        if (creating && time >= lastTimeCreated + component.createDelay) {
 
-            if (robots.length < comp.maxRobots && creating) {
+            if (robots.length < component.maxRobots && creating) {
                 lastTimeCreated = time;
-                var robot = go.engine.instantiate(comp.robotPrefab);
+                var robot = gameObject.engine.instantiate(component.robotPrefab);
                 var t = robot.getComponent('transform2d');
                 robots.push(robot);
                 numCreated++;
@@ -44,14 +44,14 @@ Plan10.Component.RobotManager = function(go, comp) {
 
                 y += 65;
                 
-                if (robots.length >= comp.maxRobots) {
+                if (robots.length >= component.maxRobots) {
                     creating = false;
                 }
             }
         }
         
         //or destroy a robot
-        if (!creating && time >= lastTimeDestroyed + comp.destroyDelay && robots.length <= comp.maxRobots) {
+        if (!creating && time >= lastTimeDestroyed + component.destroyDelay && robots.length <= component.maxRobots) {
             y = 0;
             x = 0;
             lastTimeDestroyed = time;

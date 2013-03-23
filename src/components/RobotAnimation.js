@@ -1,15 +1,15 @@
 'use strict';
 
-Plan10.Component.RobotAnimationWithAtlas = function(go, comp) {
+Plan10.Component.RobotAnimationWithAtlas = function(gameObject, component) {
     
     //define animations on create
-    comp.$on('create', function() {
+    component.$on('engine.create', function() {
         //disable until we know we've loaded & defined the animations needed
-        go.disable();
-        var animator = go.getComponent('spriteAnimator');
+        gameObject.disable();
+        var animator = gameObject.getComponent('spriteAnimator');
 
         //load assets on start
-        go.engine.loadAsset('assets/robot/robot.atlas.json', function(atlas) {
+        gameObject.engine.loadAsset('assets/robot/robot.atlas.json', function(atlas) {
             
             //walk animation
             animator.define('walk', [
@@ -35,7 +35,7 @@ Plan10.Component.RobotAnimationWithAtlas = function(go, comp) {
             ]);
             
             //activate
-            go.enable();
+            gameObject.enable();
         });
     });
 };
