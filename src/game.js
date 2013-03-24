@@ -16,7 +16,7 @@ Plan10.Plugin = {};         //for experimental engine plugins
 //config passed to Javelin engine instance
 Plan10.config = {
     name: "Plan 10 from Outer Space!",
-    debug: true,
+    debug: false,
     stepsPerSecond: 1000/30,
     loader: {
         assetUrl: "http://localhost/plan10/"
@@ -27,7 +27,7 @@ Plan10.config = {
             height: 768,
             width: 1024,
             framesPerSecond: 1000/30
-        } /*,
+        } ,
         'input': {
             keyboard: {
                 buttons: {
@@ -38,7 +38,7 @@ Plan10.config = {
                     'fire': 'space'
                 }
             }
-        } */
+        } 
     },
     autoregisterComponents: Plan10.Component,
     autoregisterPrefabs: Plan10.Prefab,

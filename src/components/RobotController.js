@@ -24,11 +24,11 @@ Plan10.Component.RobotController = function(gameObject, component) {
         transform.translate(component.speed * deltaTime, 0.0);
         
         //gradually shrink it
-        sprite.scale.x -= 0.005;
-        sprite.scale.y -= 0.005;
+        //sprite.scale.x -= 0.005;
+        //sprite.scale.y -= 0.005;
         
-        //and rotate 1 degree per frame
-        transform.rotate(1);
+        //and rotate N degree per frame
+        transform.rotate(10);
         
         /*
         if (input.getButton('move left')) {
