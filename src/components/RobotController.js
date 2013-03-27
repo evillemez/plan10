@@ -13,40 +13,35 @@ Plan10.Component.RobotController = function(gameObject, component) {
         transform = gameObject.getComponent('transform2d');
         sprite = gameObject.getComponent('sprite');
         
-        //input = gameObject.engine.getPlugin('input');
+        input = gameObject.engine.getPlugin('input');
         gameObject.getComponent('spriteAnimator').play('walk');
     });
     
     //move the robot accross the screen a little each frame
     component.$on('engine.update', function(deltaTime) {
         
-        //move it accross the screen
-        transform.translate(component.speed * deltaTime, 0.0);
-        
         //gradually shrink it
         //sprite.scale.x -= 0.005;
         //sprite.scale.y -= 0.005;
-        
-        //and rotate N degree per frame
-        transform.rotate(10);
-        
-        /*
         if (input.getButton('move left')) {
-            transform.translate(component.speed * -deltaTime, 0);
+            transform.rotate(-5);
         }
         
         if (input.getButton('move right')) {
-            transform.translate(component.speed * deltaTime, 0);
+            transform.rotate(5);
         }
         
         if (input.getButton('move up')) {
-            transform.translate(0, component.speed * -deltaTime);
+            transform.translate(0.0, component.speed * deltaTime);
         }
         
         if (input.getButton('move down')) {
-            transform.translate(0, component.speed * deltaTime);
+            transform.translate(0.0, component.speed * -deltaTime);
         }
-        */
+        
+        if (input.getButton('fire')) {
+            console.log("FIRING!!!!");
+        }
     });
 };
 Plan10.Component.RobotController.alias = "plan10.robot_controller";

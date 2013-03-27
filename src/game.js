@@ -27,7 +27,7 @@ Plan10.config = {
             height: 768,
             width: 1024,
             framesPerSecond: 1000/30
-        } ,
+        },
         'input': {
             keyboard: {
                 buttons: {
@@ -38,7 +38,7 @@ Plan10.config = {
                     'fire': 'space'
                 }
             }
-        } 
+        }
     },
     autoregisterComponents: Plan10.Component,
     autoregisterPrefabs: Plan10.Prefab,

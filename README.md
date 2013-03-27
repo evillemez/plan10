@@ -1,6 +1,6 @@
 # README #
 
-This is the game *Plan10!*. It is being developed in sync with the *javelin* game engine.  More details on the game will come at 
+This is the game *Plan10!*. It is being developed in sync with the *Javelin* game engine.  More details on the game will come at 
 a later date.
 
 For more on *Javelin* and how to use it, see the [Javelin repository](https://github.com/evillemez/javelin).
@@ -19,3 +19,8 @@ Here's what you need to know about the structure of the files.
 * `util/` - One-off utilities, mostly for the build process.
 * `Gruntfile.js` - Grunt settings for the project
 * `index.html` - The entry-point for the game.  It includes the necessary files, then instantiates the engine, loads the first scene, and runs.
+
+
+## Deployment ##
+
+    //TODO: describe what to do to "build" the game
