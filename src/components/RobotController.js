@@ -21,8 +21,9 @@ Plan10.Component.RobotController = function(gameObject, component) {
     component.$on('engine.update', function(deltaTime) {
         
         //gradually shrink it
-        //sprite.scale.x -= 0.005;
-        //sprite.scale.y -= 0.005;
+        sprite.scale.x -= 0.005;
+        sprite.scale.y -= 0.005;
+        
         if (input.getButton('move left')) {
             transform.rotate(-5);
         }
