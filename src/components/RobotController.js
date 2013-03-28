@@ -33,11 +33,11 @@ Plan10.Component.RobotController = function(gameObject, component) {
         }
         
         if (input.getButton('move up')) {
-            transform.translate(0.0, component.speed * deltaTime);
+            transform.translate(0.0, component.speed * -deltaTime);
         }
         
         if (input.getButton('move down')) {
-            transform.translate(0.0, component.speed * -deltaTime);
+            transform.translate(0.0, component.speed * deltaTime);
         }
         
         if (input.getButton('fire')) {
