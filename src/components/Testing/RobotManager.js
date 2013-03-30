@@ -65,4 +65,4 @@ Plan10.Component.RobotManager = function(gameObject, component) {
     });
 
 };
-Plan10.Component.RobotManager.alias = "plan10.robot_manager";
+Plan10.Component.RobotManager.alias = "plan10.robotManager";

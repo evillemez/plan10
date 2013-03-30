@@ -2,7 +2,7 @@
 
 module.exports = function(grunt) {
 
-  // Project configuration.
+    // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         
@@ -16,9 +16,9 @@ module.exports = function(grunt) {
             build: [
                 'util/build_intro.js',
                 'src/game.js',
-                'src/components/*',
-                'src/prefabs/*',
-                'src/scenes/*',
+                'src/components/**/*.js',
+                'src/prefabs/**/*.js',
+                'src/scenes/**/*.js',
                 'util/build_outro.js'
             ]
         },

@@ -1,5 +1,15 @@
 'use strict';
 
-Plan10.Scene.WinEnding = {
-    name: "plan10.win_ending"    
+Plan10.Scene.Win = {
+    name: "plan10.win_ending",
+    objects: [
+        {
+            name: "Monologue",
+            components: {
+                'plan10.monologue': {
+                    dataFile: 'assets/monologue_win.json'
+                }
+            }
+        }
+    ]
 };

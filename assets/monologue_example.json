@@ -1,0 +1,20 @@
+{
+    "sound": "assets/path/to/sound.mp3",
+    "length": "3445",
+    "text": "complete text of monologue if you want to do the scrolling thing",
+    "frames": [
+        {
+            "image": "assets/path/to/image.png",
+            "time": "23",
+            "text": "text if you want to show text on a frame-by-frame basis"
+        },
+        {
+            "image": "assets/path/to/image.png",
+            "time": "45"
+        },
+        {
+            "image": "assets/path/to/image.png",
+            "time": "76"
+        }
+    ],
+}

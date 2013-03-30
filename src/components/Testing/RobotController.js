@@ -45,5 +45,5 @@ Plan10.Component.RobotController = function(gameObject, component) {
         }
     });
 };
-Plan10.Component.RobotController.alias = "plan10.robot_controller";
-Plan10.Component.RobotController.requires = ['plan10.robot_animation'];
+Plan10.Component.RobotController.alias = "plan10.robotController";
+Plan10.Component.RobotController.requires = ['plan10.robotAnimation'];

@@ -1,9 +1,9 @@
 'use strict';
 
 Plan10.Prefab.FastRobot = {
-    name: "plan10.fast_robot",
+    name: "plan10.fastRobot",
     components: {
-        "plan10.robot_controller": {
+        "plan10.robotController": {
             speed: 80
         },
     }

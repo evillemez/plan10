@@ -1,6 +1,6 @@
 'use strict';
 
-Plan10.Component.RobotAnimationWithAtlas = function(gameObject, component) {
+Plan10.Component.RobotAnimation = function(gameObject, component) {
     
     //define animations on create
     component.$on('engine.create', function() {
@@ -39,5 +39,5 @@ Plan10.Component.RobotAnimationWithAtlas = function(gameObject, component) {
         });
     });
 };
-Plan10.Component.RobotAnimationWithAtlas.alias = "plan10.robot_animation";
-Plan10.Component.RobotAnimationWithAtlas.requires = ['spriteAnimator'];
+Plan10.Component.RobotAnimation.alias = "plan10.robotAnimation";
+Plan10.Component.RobotAnimation.requires = ['spriteAnimator'];
