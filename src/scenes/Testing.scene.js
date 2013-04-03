@@ -6,14 +6,48 @@ Plan10.Scene.Testing = {
         'plan10.robotAnimation'
     ],
     objects: [
+        'plan10.testPlayer',
         {
-            name: "Robot",
             components: {
-                "plan10.robotManager": {
-                    maxRobots: 100,
-                    createDelay: 10,
-                    destroyDelay: 10,
-                    robotPrefab: 'plan10.fastRobot'
+                'plan10.robotAnimation': {},
+                'transform2d': {
+                    position: {
+                        x: 500,
+                        y: 500
+                    }
+                }
+            }
+        },
+        {
+            components: {
+                'plan10.robotAnimation': {},
+                'transform2d': {
+                    position: {
+                        x: 150,
+                        y: 500
+                    }
+                }
+            }
+        },
+        {
+            components: {
+                'plan10.robotAnimation': {},
+                'transform2d': {
+                    position: {
+                        x: 150,
+                        y: 150
+                    }
+                }
+            }
+        },
+        {
+            components: {
+                'plan10.robotAnimation': {},
+                'transform2d': {
+                    position: {
+                        x: 500,
+                        y: 150
+                    }
                 }
             }
         }
