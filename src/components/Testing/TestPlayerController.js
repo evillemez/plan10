@@ -4,9 +4,9 @@ Plan10.Component.TestPlayerController = function(gameObject, component) {
     var input, audio, animator, transform;
     var lastFired = 0;
     
-    //delay firing to once every 400 ms
+    //delay firing to once every X ms
     component.fireDelay = 200;
-    component.ammo = 50;
+    component.ammo = 30;
     component.moveSpeed = 40;
     
     //initial setup
@@ -26,12 +26,12 @@ Plan10.Component.TestPlayerController = function(gameObject, component) {
     
     //called when it destroys
     component.$on('engine.destroy', function() {
-        audio.stop();
+        audio.stopSound();
     });
     
     //called every frame
     component.$on('engine.update', function(deltaTime) {
-        var radians = transform.rotation * Math.PI / 180;
+        var radians = transform.rotation * Plan10.PI_OVER_180;
         var forwardX, forwardY;
         var moving = false;
         
@@ -45,15 +45,11 @@ Plan10.Component.TestPlayerController = function(gameObject, component) {
         }
         if (input.getButton('move up')) {
             moving = true;
-            forwardX = Math.cos(radians) * component.moveSpeed * deltaTime;
-            forwardY = Math.sin(radians) * component.moveSpeed * deltaTime;
-            transform.translate(forwardX, forwardY);
+            transform.translateForward(component.moveSpeed * deltaTime);
         }
         if (input.getButton('move down')) {
             moving = true;
-            forwardX = -Math.cos(radians) * component.moveSpeed * deltaTime;
-            forwardY = -Math.sin(radians) * component.moveSpeed * deltaTime;
-            transform.translate(forwardX, forwardY);
+            transform.translateBackward(component.moveSpeed * deltaTime);
         }
         if (moving) {
             animator.play('walk');
@@ -84,6 +80,6 @@ Plan10.Component.TestPlayerController = function(gameObject, component) {
 };
 Plan10.Component.TestPlayerController.alias = "plan10.testPlayerController";
 Plan10.Component.TestPlayerController.requires = [
-    'plan10.robotAnimation',
+    'plan10.robotAnimationIndividual',
     'audioEmitter'
 ];

@@ -9,7 +9,7 @@ Plan10.Component.RobotAnimation = function(gameObject, component) {
         var animator = gameObject.getComponent('spriteAnimator');
 
         //load assets on start
-        gameObject.engine.loadAsset('assets/robot/robot.atlas.json', function(atlas) {
+        gameObject.engine.loadAsset('assets/grits/robot/robot.atlas.json', function(atlas) {
             
             //walk animation
             animator.define('walk', [

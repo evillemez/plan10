@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Plan 10 from Outer Space!</title>
+        <script type="text/javascript" charset="utf-8" src='vendor/box2d.js'></script>
         <script type="text/javascript" charset="utf-8" src='vendor/javelin.js'></script>
         <script type="text/javascript" charset="utf-8" src='build/plan10.js'></script>
         <style>
@@ -10,10 +11,11 @@
             }
         </style>
         <script>
+            var game;
             window.onload = function() {
-                var engine = new Javelin.Engine(new Javelin.Env.Browser(), Plan10.config);
-                engine.loadScene('plan10.test_scene', function() {
-                    engine.run();
+                game = new Javelin.Engine(new Javelin.Env.Browser(), Plan10.config);
+                game.loadScene('plan10.test_scene', function() {
+                    game.run();
                 });
             };
         </script>

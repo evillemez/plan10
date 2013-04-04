@@ -1,1 +1,3 @@
-Placeholder for assets, generally sound/images.  Not kept in repo because of size.
+Assets in `grits/` taken from the gritsgame source: https://code.google.com/p/gritsgame/
+
+Generally shouldn't store assets in the repo until they're finalized...
