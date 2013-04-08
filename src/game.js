@@ -17,7 +17,7 @@ Plan10.config = {
     name: "Plan 10 from Outer Space!",
     debug: true,
     stepsPerSecond: 1000/30,
-    loader: {
+        loader: {
         assetUrl: "http://localhost/plan10/"
     },
     plugins: {
