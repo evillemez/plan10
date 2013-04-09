@@ -30,6 +30,7 @@ Plan10.Scene.Testing = {
             }
         },
         {
+            layer: 'background',
             components: {
                 'plan10.robotAnimation': {},
                 'transform2d': {

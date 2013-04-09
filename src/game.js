@@ -16,6 +16,7 @@ Plan10.Plugin = {};         //for experimental engine plugins
 Plan10.config = {
     name: "Plan 10 from Outer Space!",
     debug: true,
+    layers: ['background', 'default', 'foreground'],
     stepsPerSecond: 1000/30,
         loader: {
         assetUrl: "http://localhost/plan10/"
