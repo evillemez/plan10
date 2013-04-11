@@ -51,7 +51,3 @@ Plan10.Component.Monologue = function(gameObject, component) {
     });
 };
 Plan10.Component.Monologue.alias = "plan10.monologue";
-Plan10.Component.Monologue.requires = [
-//    'audioListener'
-//    ,'audioEmitter'
-];

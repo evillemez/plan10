@@ -1,47 +1,157 @@
 'use strict';
 
 /**
- * Main component for the ship, uses player's input to control the ship, and play sounds
+ * Main component for the ship, uses player's input to control the ship, play sounds, and fire weapons
  */
 Plan10.Component.ShipController = function(gameObject, component) {
-    component.collisionNoise = '';
+    component.collisionSound = null;
+    component.thrustSound = null;
+    component.shipImagePath = null;
     component.bombPrefab = null;
+    component.blackholePrefab = null;
+    component.detonateDelay = 1000;
+    component.fireDelay = 1000;
+
+    //cache input values
+    var inputLeft, inputRight, inputForward, inputBackward, inputStrafe, inputBomb, inputBlackHole;
     
-    //references to other components
-    var rigidbody, audio;
+    //internal references to other components and objects
+    var rigidbody = gameObject.getComponent('rigidbody2d');
+    var transform = gameObject.getComponent('transform2d');
+    var audio = gameObject.getComponent('audioEmitter');
+    var input = gameObject.engine.getPlugin('input');
+    var sprite = gameObject.getComponent('sprite');
+    var currentTime = 0;
+    var activeBomb = null;
+    var activeBlackHole = null;
+    var timeBombFired = 0;
+    var timeBombDetonated = 0;
+    var timeBlackHoleFired = 0;
+    var timeBlackHoleDetonated = 0;
+    var isMoving = false;
     
-    //input values
-    var inputLeft, inputRight, inputUp, inputDown, inputFire;
-        
+    //on create load required assets
+    component.$on('engine.create', function() {
+        if (component.shipImagePath) {
+            gameObject.disable();
+            gameObject.engine.loadAssets([
+                component.shipImagePath,
+                component.thrustSound,
+                component.collisionSound
+            ], function(assets) {
+                sprite.image = assets[0];
+
+                gameObject.enable();
+            });
+        }
+    });
+    
+    //get input values, handle firing weapons
     component.$on('engine.update', function(deltaTime) {
-        //check user input values, and store them
+        currentTime = gameObject.engine.time;
         
-        //if user has fired the weapon, instantiate a bomb, and set necessary
-        //starting values - make sure it is moved far enough away to not
-        //collide with the ship when it's created
-        //BUT: don't let the player fire more than one bomb at a time
-        /*
-        var bomb = gameObject.engine.instantiatePrefab(component.bombPrefab);
-        bomb.getComponent('transform2d').position = {
-            x: '',
-            y: ''
-        };
-        */
+        //get input values
+        inputForward = input.getButton('move up');
+        inputBackward = input.getButton('move down');
+        inputLeft = input.getButton('move left');
+        inputRight = input.getButton('move right');
+        inputStrafe = input.getButton('strafe');
+        inputBomb = input.getButton('fire bomb');
+        inputBlackHole = input.getButton('fire black hole');
+        
+        //play thrust sound if appropriate
+        if (component.thrustSound) {
+            if (inputForward || inputBackward || inputLeft || inputRight) {
+                audio.playLoop(component.thrustSound);
+            } else {
+                audio.stopSound(component.thrustSound);
+            }
+        }
+        
+        if (inputBomb) {
+            if (activeBomb !== null && currentTime - timeBombFired >= component.detonateDelay) {
+                timeBombDetonated = currentTime;
+                activeBomb.detonate();
+                activeBomb = null;
+            } else if (activeBomb === null && currentTime - timeBombDetonated >= component.fireDelay) {
+                //instantiate bomb in front of ship
+                var bomb = gameObject.engine.instantiatePrefab(component.bombPrefab);
+                timeBombFired = currentTime;
+                bomb.getComponent('transform2d').position = {
+                    x: transform.position.x + 100,
+                    y: transform.position.y + 100
+                };
+                bomb.getComponent('transform2d').rotation = transform.rotation;
+                activeBomb = bomb.getComponent('plan10.projectile');
+                bomb.on('projectile.destroy', function() {
+                    activeBomb = null;
+                });
+            }
+        }
+
+        //this could be refactored to not duplicate the same logic as above.... but whatever
+        if (inputBlackHole) {
+            if (activeBlackHole !== null && currentTime - timeBlackHoleFired >= component.detonateDelay) {
+                timeBlackHoleDetonated = currentTime;
+                activeBlackHole.detonate();
+                activeBlackHole = null;
+            } else if (activeBlackHole === null && currentTime - timeBlackHoleDetonated >= component.fireDelay) {
+                //instantiate bomb in front of ship
+                var blackHole = gameObject.engine.instantiatePrefab(component.blackHolePrefab);
+                timeBlackHoleFired = currentTime;
+                blackHole.getComponent('transform2d').position = {
+                    x: transform.position.x + 100,
+                    y: transform.position.y + 100
+                };
+                blackHole.getComponent('transform2d').rotation = transform.rotation;
+                activeBlackHole = blackHole.getComponent('plan10.projectile');
+                blackHole.on('projectile.destroy', function() {
+                    activeBlackHole = null;
+                });
+            }
+        }
     });
     
+    //apply forces to ship based on input
     component.$on('box2d.update', function() {
-        //based on user-input, set force values on the rigidbody
-        //so the physics engine can move the ship properly
+        if (inputForward) {
+            rigidbody.applyForceForward(component.thrustForce);
+        }
+        if (inputBackward) {
+            rigidbody.applyForceBackward(component.thrustForce);
+        }
+        if (inputLeft) {
+            if (inputStrafe) {
+                rigidbody.applyForceLeft(component.thrustForce);
+            } else {
+                rigidbody.applyRotationForce(-component.rotationForce);
+            }
+        }
+        if (inputRight) {
+            if (inputStrafe) {
+                rigidbody.applyForceRight(component.thrustForce);
+            } else {
+                rigidbody.applyRotationForce(component.rotationForce);
+            }
+        }
     });
     
+    //use audio component to play collision noise and/or commentary
     component.$on('box2d.collision.enter', function() {
-        //use audio component to play collision noise
+        audio.playOnce('assets/kent/fx/FX-turretcollide.mp3');
+    });
+
+    //if the health component destroys this object, let's do... what?
+    gameObject.on('health.destruct', function() {
+        if (window) {
+            window.alert('well shit :(');
+        }
     });
 };
 Plan10.Component.ShipController.alias = "plan10.shipController";
 Plan10.Component.ShipController.requires = [
-    'plan10.shipAnimations'
-    ,'plan10.health'
-    //,'rigidbody2d',
-    //,'audioEmitter'
+    'plan10.health'
+    ,'audioEmitter'
+    ,'audioListener'
+    ,'sprite'
 ];

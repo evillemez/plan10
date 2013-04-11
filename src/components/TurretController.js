@@ -6,11 +6,12 @@ Plan10.Component.TurretController = function(gameObject, component) {
     //to set it when it instantiates the turrets
     component.manager = null;
     
-    component.range = 20;
+    component.range = 250;
     component.damagePerSecond = 10;
     component.energyPerSecond = 10;
     component.maxEnergy = 100;
     component.currentEnergy = 100;
+    component.laserPrefab = null;
     
     component.$on('engine.update', function(deltaTime) {
         //float around or something

@@ -5,6 +5,6 @@ Plan10.Prefab.SlowRobot = {
     components: {
         "plan10.robotController": {
             speed: 20
-        },
+        }
     }
 };

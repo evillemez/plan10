@@ -41,7 +41,6 @@ Plan10.Component.RobotAnimationIndividual = function(gameObject, component) {
             gameObject.enable();
         });
     });
-        
 };
 Plan10.Component.RobotAnimationIndividual.alias = "plan10.robotAnimationIndividual";
 Plan10.Component.RobotAnimationIndividual.requires = ['spriteAnimator'];

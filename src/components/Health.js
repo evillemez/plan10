@@ -9,20 +9,30 @@ Plan10.Component.Health = function(gameObject, component) {
     component.currentHealth = 100;
     component.deathPrefab = null;
     
-    //API for other components to use
     component.applyDamage = function(damage) {
-        //subtract from current health
+        component.currentHealth -= damage;
+        if (component.currentHealth <= 0) {
+            component.destroy();
+        }
     };
     
     component.applyHealth = function(health) {
-        //add to current, but no more than max
+        component.currentHealth += health;
+        if (component.currentHealth > component.maxHealth) {
+            component.currentHealth = component.maxHealth;
+        }
     };
     
-    component.$on('engine.update', function(deltaTime) {
-        //if health is <= 0:
-        // - instantiate the deathPrefab, and set the transform position equal to this gameObject's transform.position
-        // - destroy this game object (gameObject.destroy();)
-    });
+    component.destroy = function() {
+        gameObject.broadcast('health.destruct');
+
+        if (component.deathPrefab) {
+            var go = gameObject.engine.instantiate(component.deathPrefab);
+            go.getComponent('transform2d').position = gameObject.getComponent('transform2d').position;
+        }
+
+        gameObject.destroy();
+    };
     
     component.$on('box2d.collision.enter', function() {
         //if there's a collision, apply damage
@@ -31,6 +41,5 @@ Plan10.Component.Health = function(gameObject, component) {
 };
 Plan10.Component.Health.alias = "plan10.health";
 Plan10.Component.Health.requires = [
-    'transform2d'
-    //,'rigidbody2d'
+    'rigidbody2d'
 ];
