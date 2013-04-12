@@ -5,6 +5,28 @@ Plan10.Scene.Main = {
     objects: [
         'plan10.player',
         {
+            fromPrefab: 'plan10.turret',
+            components: {
+                'transform2d': {
+                    position: {
+                        x: 500,
+                        y: 300
+                    }
+                }
+            }
+        },
+        {
+            fromPrefab: 'plan10.asteroid',
+            components: {
+                'transform2d': {
+                    position: {
+                        x: 300,
+                        y: 300
+                    }
+                }
+            }
+        },
+        {
             name: 'timer',
             components: { 'plan10.timer': {}}
         }

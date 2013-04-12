@@ -13,8 +13,8 @@ Plan10.Prefab.Player = {
             blackHolePrefab: 'plan10.blackHole',
             thrustForce: 10000,
             rotationForce: 100000,
-            fireDelay: 1000,
-            detonateDelay: 1000,
+            fireDelay: 500,
+            detonateDelay: 500,
             thrustSound: 'assets/kent/fx/FX-thruster.mp3'
         },
         'sprite': {

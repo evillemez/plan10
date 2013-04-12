@@ -43,8 +43,10 @@ Plan10.Component.Projectile = function(gameObject, component) {
         rigidbody.setVelocityForward(component.velocity);
     });
     
-    component.$on('box2d.collision.enter', function(gameObject) {
-        component.detonate();
+    component.$on('box2d.trigger.enter', function(gameObject) {
+        if (!gameObject.hasComponent('plan10.proximitySensor')) {
+            component.detonate();
+        }
     });
 };
 Plan10.Component.Projectile.alias = 'plan10.projectile';

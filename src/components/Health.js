@@ -34,9 +34,10 @@ Plan10.Component.Health = function(gameObject, component) {
         gameObject.destroy();
     };
     
-    component.$on('box2d.collision.enter', function() {
-        //if there's a collision, apply damage
-        //based on the force of the impact
+    component.$on('box2d.collision.enter', function(gameObject, contact) {
+        var damage = 0;
+        //get body inertias, apply damage accordingly - but not to asteroids!
+        component.applyDamage(damage);
     });
 };
 Plan10.Component.Health.alias = "plan10.health";

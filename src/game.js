@@ -45,8 +45,8 @@ Plan10.config = {
         },
         'canvas2d': {
             renderTargetId: 'game',
-            height: 768,
-            width: 1024,
+            height: 600,
+            width: 800,
             framesPerSecond: 1000/60,
             layers: ['background', 'default', 'foreground']
         },

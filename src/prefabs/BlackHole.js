@@ -13,6 +13,10 @@ Plan10.Prefab.BlackHole = {
             explosionPrefab: 'plan10.blackHoleDetonation',
             timeToLive: 6000
         },
+        'rigidbody2d': {
+            radius: 15,
+            trigger: true
+        },
         'spriteAnimator': {
             animations: {
                 'default': {
@@ -37,14 +41,6 @@ Plan10.Prefab.BlackHole = {
                     ]
                 }
             }
-        },
-        'rigidbody2d': {
-            radius: 15,
-            density: 0.0,
-            restitution: 0.0,
-            friction: 0.0,
-            damping: 0.0,
-            angularDamping: 0.0
         }
     }
 };
