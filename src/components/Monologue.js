@@ -13,12 +13,17 @@ Plan10.Component.Monologue = function(gameObject, component) {
     var timeStarted = null;
     var started = false;
     var finished = false;
-    var monoArray = [];
-    var monoLast = 12;
+    
+    var monoArray = [];    //eventually use 1 array instead of 3
+    var monoLast = 12;     //list of assets - 1
     var monoIndex = (-1);  //init to -1 so that it will increment to start of array upon first loop
     var imgChanged = 0;
+    
     var frameDelay = null;    
     var lastTimeDrawn = 0;
+    
+    var theater_img = null;
+    
     var audio;
     
     var audioPaths = [
@@ -38,7 +43,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     ]; 
 
     var imgPaths = [
-            'assets/Mario_Pinball.png',
+            'assets/monologue_image/script-01.png',
             'assets/Bombette.jpg',
             'assets/dice.png',
             'assets/Mario_Pinball.png',
@@ -54,7 +59,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     ];    
 
     var timeArray = [
-        14,
+        15,
         2,
         6,
         12,
@@ -75,12 +80,19 @@ Plan10.Component.Monologue = function(gameObject, component) {
         gameObject.disable();
         audio = gameObject.getComponent('audioEmitter');
 
+       // gameObject.engine.loadAsset(audioPaths[0], function() {
+           //nothing to do!
+        //});
+        
+        gameObject.engine.loadAsset('assets/Theater_Working_Demo.png',function(image) {
+            theater_img = image;
+        });
+        
         gameObject.engine.loadAssets(imgPaths, function(loaded_images) {                
             monoArray = loaded_images;
             gameObject.enable(); 
 
-        }
-);
+        });
                 
     
     });
@@ -101,8 +113,8 @@ Plan10.Component.Monologue = function(gameObject, component) {
                 console.log("In loop: " + frameDelay);
                 lastTimeDrawn = gameObject.engine.time;
                 
-                //loop through all the arrays.  For now, start over instead of stopping
-                if (monoIndex < monoLast) { monoIndex++; }  else { monoIndex = 0; }
+                //use monoIndex to loop through all the arrays.  For now, start over instead of stopping
+                if (monoIndex < monoLast) { monoIndex++; }  else { finished = 1; }
                 
                 //set frameDelay to length of next part of monologue
                 frameDelay = ((timeArray[monoIndex]) * 1000); 
@@ -115,7 +127,10 @@ Plan10.Component.Monologue = function(gameObject, component) {
             //the html page will have a listener on it that shows the
             //splash page with the ('intro', 'play') buttons whenever this
             //event is emitted from the engine
-
+            gameObject.engine.loadScene('plan10.test_scene', function() {
+                    gameObject.engine.run();
+            });
+            
             //gameObject.engine.emit('monologue.finished');
         }
 
@@ -125,8 +140,10 @@ Plan10.Component.Monologue = function(gameObject, component) {
     //actually draw the monologue images/text
     component.$on('canvas2d.draw', function(context) {
         //use the canvas directly to draw the images and the text
-        context.drawImage(monoArray[monoIndex],500,200,200,200);
-       // frameDelay = (timeArray[monoIndex] * 1000); 
+        //context.fillStyle   = '#00f';
+        //context.fillRect  (0,   0, 1024, 768);
+        context.drawImage(monoArray[monoIndex],500,150,200,200);
+        frameDelay = (timeArray[monoIndex] * 1000); 
     });
 };
 Plan10.Component.Monologue.alias = "plan10.monologue";
