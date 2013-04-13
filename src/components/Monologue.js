@@ -121,9 +121,9 @@ Plan10.Component.Monologue = function(gameObject, component) {
                 console.log("canvas_plugin_lastcall: " + canvas_plugin_lastcall);
                 console.log("canvas_plugin_finished: " + canvas_plugin_finished);
 
-            if ( !(canvas_plugin_finished) ){     
-                //use monoIndex to loop through all the arrays.
-               // if (monoIndex === (monoLast - 1)) { loop_breaker = 1; } 
+            if ( (!(canvas_plugin_finished)) && (!(canvas_plugin_lastcall)) ){     
+                
+                //use monoIndex to loop through all the assets and keep them in sync.
                 if (monoIndex === (monoLast)) { canvas_plugin_lastcall = 1; loop_breaker = 1; }
                 if (monoIndex < monoLast) {  monoIndex++; }  
                 
