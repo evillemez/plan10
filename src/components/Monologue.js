@@ -44,23 +44,23 @@ Plan10.Component.Monologue = function(gameObject, component) {
 
     var imgPaths = [
             'assets/monologue_image/script-01.png',
-            'assets/Bombette.jpg',
-            'assets/dice.png',
-            'assets/Mario_Pinball.png',
-            'assets/Bombette.jpg',
-            'assets/dice.png',
-            'assets/Mario_Pinball.png',
-            'assets/Bombette.jpg',
-            'assets/dice.png',
-            'assets/Mario_Pinball.png',
-            'assets/Bombette.jpg',
-            'assets/dice.png',
-            'assets/Mario_Pinball.png'            
+            'assets/monologue_image/script-02.png',
+            'assets/monologue_image/script-03.png',
+            'assets/monologue_image/script-04.png',
+            'assets/monologue_image/script-05.png',
+            'assets/monologue_image/script-06.png',
+            'assets/monologue_image/script-07.png',
+            'assets/monologue_image/script-08.png',
+            'assets/monologue_image/script-09.png',
+            'assets/monologue_image/script-10.png',
+            'assets/monologue_image/script-11.png',
+            'assets/monologue_image/script-12.png',
+            'assets/monologue_image/script-13.png'            
     ];    
 
     var timeArray = [
         15,
-        2,
+        4,
         6,
         12,
         12,
@@ -69,7 +69,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
         6,
         12,
         8,
-        7,
+        8,
         12,
         3
     ];
@@ -140,9 +140,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     //actually draw the monologue images/text
     component.$on('canvas2d.draw', function(context) {
         //use the canvas directly to draw the images and the text
-        //context.fillStyle   = '#00f';
-        //context.fillRect  (0,   0, 1024, 768);
-        context.drawImage(monoArray[monoIndex],500,150,200,200);
+        context.drawImage(monoArray[monoIndex],0,0,1024,768);
         frameDelay = (timeArray[monoIndex] * 1000); 
     });
 };
