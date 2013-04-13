@@ -5,6 +5,7 @@
         <script type="text/javascript" charset="utf-8" src='vendor/javelin.js'></script>
         <script type="text/javascript" charset="utf-8" src='build/plan10.js'></script>
         <style>
+
             body {
                 background-color: #000;
             }
@@ -14,21 +15,31 @@
                 background-color: #444;
                 height: 600px;
                 width: 800px;
-            }
+            
+            #stage {
+                 
+                 background-image:url('assets/screen2.png');
+                 background-repeat:no-repeat;
+                 margin 0px auto;
+                 }
+            
         </style>
         <script>
             var game;
             window.onload = function() {
                 game = new Javelin.Engine(new Javelin.Env.Browser(), Plan10.config);
                 game.loadScene('plan10.main', function() {
-                    game.run();
+                game.run();
                 });
             };
         </script>
     </head>
     <body>
+
         <!-- TODO: frame the game area with movie theater -->
-        <div id='game'>
+<div id="stage">
+        <div id="game">
         </div>
+</div>
     </body>
 </html>
