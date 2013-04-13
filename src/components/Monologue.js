@@ -19,7 +19,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     var loop_breaker           = 0; 
     
     var monoArray = [];    //eventually use 1 array instead of 3
-    var monoLast = 1;     //list of assets - 1
+    var monoLast = 12;     //list of assets - 1
     var monoIndex = (-1);  //init to -1 so that it will increment to start of array upon first loop
     var imgChanged = 0;
     
@@ -132,6 +132,9 @@ Plan10.Component.Monologue = function(gameObject, component) {
                 frameDelay = ((timeArray[monoIndex]) * 1000); 
                 
                 //start playing next monologue audio, canvas will draw next image in a second
+                // added "loop_breaker" because the game still plays the audio file even though I can tell Canvas to stop drawing
+                // this leads to the canvas clearing, but the final audio playing 1 more time before the next scene loads
+                // not sure why
                   if (!(loop_breaker)) { audio.playOnce(audioPaths[monoIndex]);}
             
             }
