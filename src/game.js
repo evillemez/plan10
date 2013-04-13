@@ -16,9 +16,14 @@ Plan10.Plugin = {};         //for experimental engine plugins
 Plan10.config = {
     name: "Plan 10 from Outer Space!",
     debug: true,
+<<<<<<< HEAD
     layers: ['background', 'default', 'foreground'],
     stepsPerSecond: 1000/30,
         loader: {
+=======
+    stepsPerSecond: 1000/60,
+    loader: {
+>>>>>>> upstream/mainscene
         assetUrl: "http://localhost/plan10/"
     },
     plugins: {
@@ -30,15 +35,26 @@ Plan10.config = {
                     'move right': 'd',
                     'move down': 's',
                     'move up': 'w',
-                    'fire': 'space'
+                    'strafe': 'shift',
+                    'fire bomb': 'e',
+                    'fire black hole': 'q',
+                    'disable': 'space'
                 }
             }
         },
-        "canvas2d": {
+        'box2d': {
+            stepsPerSecond: 1000/60,
+            stepHZ: 1.0/60.0,
+            velocityIterations: 10,
+            positionIterations: 10,
+            clearForces: true
+        },
+        'canvas2d': {
             renderTargetId: 'game',
-            height: 768,
-            width: 1024,
-            framesPerSecond: 1000/30
+            height: 600,
+            width: 800,
+            framesPerSecond: 1000/60,
+            layers: ['background', 'default', 'foreground']
         },
     },
     autoregisterComponents: Plan10.Component,

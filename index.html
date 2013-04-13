@@ -5,16 +5,22 @@
         <script type="text/javascript" charset="utf-8" src='vendor/javelin.js'></script>
         <script type="text/javascript" charset="utf-8" src='build/plan10.js'></script>
         <style>
+            body {
+                background-color: #000;
+            }
             #game {
-                height: 768px;
-                width: 1024px;
+                margin: 0px auto;
+                margin-top: 80px;
+                background-color: #444;
+                height: 600px;
+                width: 800px;
             }
         </style>
         <script>
             var game;
             window.onload = function() {
                 game = new Javelin.Engine(new Javelin.Env.Browser(), Plan10.config);
-                game.loadScene('plan10.test_scene', function() {
+                game.loadScene('plan10.main', function() {
                     game.run();
                 });
             };
