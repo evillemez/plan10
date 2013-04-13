@@ -127,7 +127,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
             //the html page will have a listener on it that shows the
             //splash page with the ('intro', 'play') buttons whenever this
             //event is emitted from the engine
-            gameObject.engine.loadScene('plan10.test_scene', function() {
+            gameObject.engine.loadScene('plan10.main', function() {
                     gameObject.engine.run();
             });
             
