@@ -5,7 +5,7 @@
  * based on the content of the json file it is told to load.
  */
 Plan10.Component.Monologue = function(gameObject, component) {
-    
+
     //public, to be set in prefab definitions, look at 'assets/monologue_example.json' for example format
     component.dataFile = null;
     
@@ -14,8 +14,12 @@ Plan10.Component.Monologue = function(gameObject, component) {
     var started = false;
     var finished = false;
     
+    var canvas_plugin_lastcall = 0; //tell canvas plugin to clean up before loading next scene
+    var canvas_plugin_finished = 0; //when canvas is finished, load next scene
+    var loop_breaker           = 0; 
+    
     var monoArray = [];    //eventually use 1 array instead of 3
-    var monoLast = 12;     //list of assets - 1
+    var monoLast = 1;     //list of assets - 1
     var monoIndex = (-1);  //init to -1 so that it will increment to start of array upon first loop
     var imgChanged = 0;
     
@@ -101,47 +105,59 @@ Plan10.Component.Monologue = function(gameObject, component) {
     //just keep track of state  
     component.$on('engine.update', function(deltaTime) {
         //if starting, set framedelay to length of first frame
-        if (started === false) {
+        if (started === false) { 
             started = true;
             frameDelay = ((timeArray[0])*1000);
-        }
+        } 
         
-        console.log("before loop: " + frameDelay);
+  
         //either here, or in the `canvas2d.draw` section, check to figure
         //out when the monologue has finished and set "finished" to true
-            if (lastTimeDrawn + frameDelay <= gameObject.engine.time) {
-                console.log("In loop: " + frameDelay);
+            if (lastTimeDrawn + frameDelay <= gameObject.engine.time) {       
                 lastTimeDrawn = gameObject.engine.time;
                 
-                //use monoIndex to loop through all the arrays.  For now, start over instead of stopping
-                if (monoIndex < monoLast) { monoIndex++; }  else { finished = 1; }
+                //log some stuff
+                console.log("monoindex: " + monoIndex);
+                console.log("canvas_plugin_lastcall: " + canvas_plugin_lastcall);
+                console.log("canvas_plugin_finished: " + canvas_plugin_finished);
+
+            if ( !(canvas_plugin_finished) ){     
+                //use monoIndex to loop through all the arrays.
+               // if (monoIndex === (monoLast - 1)) { loop_breaker = 1; } 
+                if (monoIndex === (monoLast)) { canvas_plugin_lastcall = 1; loop_breaker = 1; }
+                if (monoIndex < monoLast) {  monoIndex++; }  
+                
                 
                 //set frameDelay to length of next part of monologue
                 frameDelay = ((timeArray[monoIndex]) * 1000); 
                 
                 //start playing next monologue audio, canvas will draw next image in a second
-                audio.playOnce(audioPaths[monoIndex]);
-        }
-   
-        if (finished) {
-            //the html page will have a listener on it that shows the
-            //splash page with the ('intro', 'play') buttons whenever this
-            //event is emitted from the engine
+                  if (!(loop_breaker)) { audio.playOnce(audioPaths[monoIndex]);}
+            
+            }
+            
+            else {
+            console.log("I think I got it");
             gameObject.engine.loadScene('plan10.main', function() {
                     gameObject.engine.run();
             });
-            
-            //gameObject.engine.emit('monologue.finished');
-        }
-
+            }
+        } 
+   
 
     });
     
     //actually draw the monologue images/text
     component.$on('canvas2d.draw', function(context) {
-        //use the canvas directly to draw the images and the text
-        context.drawImage(monoArray[monoIndex],0,0,1024,768);
-        frameDelay = (timeArray[monoIndex] * 1000); 
+         context.drawImage(monoArray[monoIndex],0,0,800,600);
+         frameDelay = (timeArray[monoIndex] * 1000);               
+         
+         if (canvas_plugin_lastcall) {
+              canvas_plugin_finished = 1;
+              context.clearRect(0, 0, 800, 600);
+         }
+    
+         
     });
 };
 Plan10.Component.Monologue.alias = "plan10.monologue";
