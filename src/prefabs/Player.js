@@ -2,6 +2,7 @@
 
 Plan10.Prefab.Player = {
     name: "plan10.player",
+    layer: 'foreground',
     components: {
         'audioListener': {},
         'audioEmitter': {
@@ -18,7 +19,7 @@ Plan10.Prefab.Player = {
             thrustSound: 'assets/kent/fx/FX-thruster.mp3'
         },
         'sprite': {
-            imagePath: 'assets/grits/robot/robowalk01.png'
+            imagePath: 'assets/ship.png'
         },
         'plan10.health': {
             maxHealth: 200,
