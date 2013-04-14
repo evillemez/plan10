@@ -5,53 +5,166 @@
  * based on the content of the json file it is told to load.
  */
 Plan10.Component.Monologue = function(gameObject, component) {
-    
+
     //public, to be set in prefab definitions, look at 'assets/monologue_example.json' for example format
     component.dataFile = null;
     
     //some private state things
     var timeStarted = null;
-    var lastTimeDrawn = null;
+    var started = false;
     var finished = false;
     
+    var canvas_plugin_lastcall = 0; //tell canvas plugin to clean up before loading next scene
+    var canvas_plugin_finished = 0; //when canvas is finished, load next scene
+    var loop_breaker           = 0; 
+    
+    var monoArray = [];    //eventually use 1 array instead of 3
+    var monoLast = 12;     //list of assets - 1
+    var monoIndex = (-1);  //init to -1 so that it will increment to start of array upon first loop
+    var imgChanged = 0;
+    
+    var frameDelay = null;    
+    var lastTimeDrawn = 0;
+    
+    var theater_img = null;
+    
+    var audio;
+    
+    var audioPaths = [
+         'assets/plan10intro/script-01.mp3',
+         'assets/plan10intro/script-02.mp3',
+         'assets/plan10intro/script-03.mp3',
+         'assets/plan10intro/script-04.mp3',
+         'assets/plan10intro/script-05.mp3',
+         'assets/plan10intro/script-06.mp3',
+         'assets/plan10intro/script-07.mp3',
+         'assets/plan10intro/script-08.mp3',
+         'assets/plan10intro/script-09.mp3',
+         'assets/plan10intro/script-10.mp3',
+         'assets/plan10intro/script-11.mp3',
+         'assets/plan10intro/script-12.mp3',
+         'assets/plan10intro/script-13.mp3'
+    ]; 
+
+    var imgPaths = [
+            'assets/monologue_image/script-01.png',
+            'assets/monologue_image/script-02.png',
+            'assets/monologue_image/script-03.png',
+            'assets/monologue_image/script-04.png',
+            'assets/monologue_image/script-05.png',
+            'assets/monologue_image/script-06.png',
+            'assets/monologue_image/script-07.png',
+            'assets/monologue_image/script-08.png',
+            'assets/monologue_image/script-09.png',
+            'assets/monologue_image/script-10.png',
+            'assets/monologue_image/script-11.png',
+            'assets/monologue_image/script-12.png',
+            'assets/monologue_image/script-13.png'            
+    ];    
+
+    var timeArray = [
+        15,
+        4,
+        6,
+        12,
+        12,
+        4,
+        10,
+        6,
+        12,
+        8,
+        8,
+        12,
+        3
+    ];
+
+
     //load a bunch of stuff and start
     component.$on('engine.create', function() {
-        //0. disable the gameobject until it's done loading stuff
-        //1. load the data file
-        //2. load the sound file specified
-        //3. load all the image files specified
-        //4. enable the gameobject
-        //5. start playing the sound file using the audio component
-        //6. keep track of what time the file started playing
+        gameObject.disable();
+        audio = gameObject.getComponent('audioEmitter');
+
+       // gameObject.engine.loadAsset(audioPaths[0], function() {
+           //nothing to do!
+        //});
         
-        //an example data file is in assets/monologue_example.json
-    });
+        gameObject.engine.loadAsset('assets/Theater_Working_Demo.png',function(image) {
+            theater_img = image;
+        });
+        
+        gameObject.engine.loadAssets(imgPaths, function(loaded_images) {                
+            monoArray = loaded_images;
+            gameObject.enable(); 
+
+        });
+                
     
-    //just keep track of state
+    });
+
+    
+    //just keep track of state  
     component.$on('engine.update', function(deltaTime) {
+        //if starting, set framedelay to length of first frame
+        if (started === false) { 
+            started = true;
+            frameDelay = ((timeArray[0])*1000);
+        } 
+        
+  
         //either here, or in the `canvas2d.draw` section, check to figure
         //out when the monologue has finished and set "finished" to true
-        
-        if (finished) {
-            //the html page will have a listener on it that shows the
-            //splash page with the ('intro', 'play') buttons whenever this
-            //event is emitted from the engine
+            if (lastTimeDrawn + frameDelay <= gameObject.engine.time) {       
+                lastTimeDrawn = gameObject.engine.time;
+                
+                //log some stuff
+                console.log("monoindex: " + monoIndex);
+                console.log("canvas_plugin_lastcall: " + canvas_plugin_lastcall);
+                console.log("canvas_plugin_finished: " + canvas_plugin_finished);
 
-            //gameObject.engine.emit('monologue.finished');
-        }
+            if ( (!(canvas_plugin_finished)) && (!(canvas_plugin_lastcall)) ){     
+                
+                //use monoIndex to loop through all the assets and keep them in sync.
+                if (monoIndex === (monoLast)) { canvas_plugin_lastcall = 1; loop_breaker = 1; }
+                if (monoIndex < monoLast) {  monoIndex++; }  
+                
+                
+                //set frameDelay to length of next part of monologue
+                frameDelay = ((timeArray[monoIndex]) * 1000); 
+                
+                //start playing next monologue audio, canvas will draw next image in a second
+                // added "loop_breaker" because the game still plays the audio file even though I can tell Canvas to stop drawing
+                // this leads to the canvas clearing, but the final audio playing 1 more time before the next scene loads
+                // not sure why
+                  if (!(loop_breaker)) { audio.playOnce(audioPaths[monoIndex]);}
+            
+            }
+            
+            else {
+            console.log("I think I got it");
+            gameObject.engine.loadScene('plan10.main', function() {
+                    gameObject.engine.run();
+            });
+            }
+        } 
+   
+
     });
     
     //actually draw the monologue images/text
     component.$on('canvas2d.draw', function(context) {
-        //use the canvas directly to draw the images and the text
-        //context.drawimage()
-        
-        //for text, that will be trickier, depending on whether or not you want the scrolling effect
-        //https://developer.mozilla.org/en-US/docs/Drawing_text_using_a_canvas
+         context.drawImage(monoArray[monoIndex],0,0,800,600);
+         frameDelay = (timeArray[monoIndex] * 1000);               
+         
+         if (canvas_plugin_lastcall) {
+              canvas_plugin_finished = 1;
+              context.clearRect(0, 0, 800, 600);
+         }
+    
+         
     });
 };
 Plan10.Component.Monologue.alias = "plan10.monologue";
 Plan10.Component.Monologue.requires = [
 //    'audioListener'
-//    ,'audioEmitter'
+      'audioEmitter'
 ];
