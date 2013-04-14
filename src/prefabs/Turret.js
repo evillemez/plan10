@@ -35,7 +35,7 @@ Plan10.Prefab.Turret = {
                     
                 },
                 'rigidbody2d': {
-                    radius: 100,
+                    radius: 100, //radius for the proximity sensor
                     trigger: true
                 }
             }
