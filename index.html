@@ -5,24 +5,36 @@
         <script type="text/javascript" charset="utf-8" src='vendor/javelin.js'></script>
         <script type="text/javascript" charset="utf-8" src='build/plan10.js'></script>
         <style>
-            #game {
-                height: 768px;
-                width: 1024px;
+ 
+            body {
+                background-color: #000;     
+                background-image:url('assets/screen4.png');
+                background-repeat:no-repeat;     
+                background-position: center top;  
             }
+                        
+           #game {
+                margin: 0px auto;
+                margin-top: 80px; 
+                background-color: #444;
+                height: 600px;
+                width: 800px;
+                }
+            
+            
         </style>
         <script>
-            var game;
+          var game;
             window.onload = function() {
                 game = new Javelin.Engine(new Javelin.Env.Browser(), Plan10.config);
-                game.loadScene('plan10.test_scene', function() {
-                    game.run();
+                game.loadScene('plan10.intro', function() {
+                game.run();
                 });
             };
         </script>
     </head>
     <body>
-        <!-- TODO: frame the game area with movie theater -->
-        <div id='game'>
-        </div>
+          <div id='game'>
+          </div>
     </body>
 </html>
