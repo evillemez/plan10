@@ -29,6 +29,10 @@ Plan10.Scene.Main = {
         {
             name: 'timer',
             components: { 'plan10.timer': {}}
+        },
+        {   name: 'background',
+            layer: 'background',
+            components: { 'plan10.background': {} }
         }
 //        ,'plan10.turretManager'
 //        ,'plan10.asteroidManager'
