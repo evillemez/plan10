@@ -36,9 +36,7 @@ Plan10.Component.Timer = function(gameObject, component) {
         
         //trigger loss if time expires
         if (timeLeft <= 0) {
-            gameObject.engine.loadScene('plan10.lose_ending', function() {
-                gameObject.engine.run();
-            });
+            gameObject.engine.loadScene('plan10.intro');
         }
     });
     
