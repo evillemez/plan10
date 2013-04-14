@@ -6,56 +6,49 @@ Plan10.Component.TurretController = function(gameObject, component) {
     //to set it when it instantiates the turrets
     component.manager = null;
     
-    component.range = 250;
-    component.damagePerSecond = 10;
-    component.energyPerSecond = 10;
-    component.maxEnergy = 100;
-    component.currentEnergy = 100;
+    component.damagePerShot = 10;
+    component.energyPerShot = 10;
+    component.fireRate = 400;       //time in ms between each shot
+    component.maxEnergy = 10000;
+    component.currentEnergy = 10000;
     component.laserPrefab = null;
     
     var target = null;
+    var targetHealth = null;
     var audio = null;
+    var lastFired = 0;
     
     component.setTarget = function(asteroid) {
         target = asteroid;
-        console.log("GOT TARGET!");
+        targetHealth = asteroid.getComponent('plan10.health');
+        console.log('locked');
     };
     
     component.dropTarget = function() {
         target = null;
-        console.log("LOST TARGET!");
+        targetHealth = null;
+        console.log('dropped');
     };
     
     component.getTarget = function() {
         return target;
     };
     
+    component.fire = function() {
+        if (gameObject.engine.time - lastFired >= component.fireRate && component.currentEnergy > 0) {
+            audio.playOnce('assets/kent/fx/FX-pew.mp3');
+            component.currentEnergy -= component.energyPerShot;
+            targetHealth.applyDamage(component.damagePerShot);
+            lastFired = gameObject.engine.time;
+        }
+    };
+    
     component.$on('engine.update', function(deltaTime) {
-        if (target && component.currentEnergy > 0) {
-            audio.playLoop('assets/kent/fx/FX-laser.mp3');
-            component.currentEnergy -= component.energyPerSecond;
-        } else {
-            audio.stopSound('assets/kent/fx/FX-laser.mp3');
+        if (target) {
+            component.fire();
         }
         
         //stop firing at an asteroid if it has moved out of range
-    });
-    
-    component.$on('box2d.trigger.enter', function(gameObject) {
-        if (!target) {
-            if (gameObject.hasComponent('asteroid')) {
-                target = gameObject;
-                gameObject.on('health.destroy', function() {
-                    target = null;
-                });
-            }
-        }
-    });
-    
-    component.$on('box2d.trigger.exit', function(gameObject) {
-        if (target && gameObject === target) {
-            target = null;
-        }
     });
     
     component.$on('engine.create', function() {
