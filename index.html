@@ -19,16 +19,14 @@
                 background-color: #444;
                 height: 600px;
                 width: 800px;
-                }
-            
-            
+            }
         </style>
         <script>
           var game;
             window.onload = function() {
                 game = new Javelin.Engine(new Javelin.Env.Browser(), Plan10.config);
                 game.loadScene('plan10.intro', function() {
-                game.run();
+                    game.run();
                 });
             };
         </script>
