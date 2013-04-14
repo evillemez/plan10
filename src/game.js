@@ -31,8 +31,7 @@ Plan10.config = {
                     'move up': 'w',
                     'strafe': 'shift',
                     'fire bomb': 'e',
-                    'fire black hole': 'q',
-                    'disable': 'space'
+                    'fire black hole': 'q'
                 }
             }
         },

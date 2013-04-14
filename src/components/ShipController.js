@@ -42,6 +42,7 @@ Plan10.Component.ShipController = function(gameObject, component) {
                 sprite.image = assets[0];
 
                 gameObject.enable();
+                audio.playOnce('assets/kent/plan 10 script-15.mp3');
             });
         }
     });

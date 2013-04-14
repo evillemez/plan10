@@ -2,10 +2,11 @@
 
 Plan10.Component.Detonation = function(gameObject, component) {
     component.detonationSound = null;
-    component.detonationForce = 100;
-    component.detonationRadius = 100;
+    component.detonationForce = null;
+    component.detonationRadius = null;
     component.implode = false;
     
+    //do a bunch of stuff once it creates
     component.$on('engine.create', function() {
         var audio = gameObject.getComponent('audioEmitter');
         var animator = gameObject.getComponent('spriteAnimator');
@@ -15,18 +16,21 @@ Plan10.Component.Detonation = function(gameObject, component) {
         
         var box = gameObject.engine.getPlugin('box2d');
         
-        //apply explosion/implosion force
-        box.applyRadialForce(
-            transform.position.x,
-            transform.position.y,
-            component.detonationForce,
-            component.detonationRadius,
-            component.implode,
-            function(gameObject) {
-                console.log('Hitting ' + gameObject.id);
-            }
-        );
+        //apply explosion/implosion force if it does that
+        if (component.detonationForce && component.detonationRadius) {
+            box.applyRadialForce(
+                transform.position.x,
+                transform.position.y,
+                component.detonationForce,
+                component.detonationRadius,
+                component.implode,
+                function(gameObject) {
+                    console.log('TODO: apply damage');
+                }
+            );
+        }
         
+        //destroy this object once it's done animating it's explosion
         animator.playOnce('explode', function() {
             gameObject.destroy();
         });
