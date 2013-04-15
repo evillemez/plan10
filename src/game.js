@@ -41,7 +41,7 @@ Plan10.config = {
             velocityIterations: 10,
             positionIterations: 10,
             clearForces: true,
-            pixelsPerMeter: 50
+            pixelsPerUnit: 50
         },
         'canvas2d': {
             renderTargetId: 'game',

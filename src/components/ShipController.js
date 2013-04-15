@@ -30,9 +30,11 @@ Plan10.Component.ShipController = function(gameObject, component) {
     var timeBlackHoleFired = 0;
     var timeBlackHoleDetonated = 0;
     var isMoving = false;
+    var engine = null;
     
     //on create load required assets
     component.$on('engine.create', function() {
+        engine = gameObject.engine;
         if (component.shipImagePath) {
             gameObject.disable();
             gameObject.engine.loadAssets([
@@ -152,14 +154,13 @@ Plan10.Component.ShipController = function(gameObject, component) {
     //use audio component to play collision noise and/or commentary
     component.$on('box2d.collision.enter', function() {
         audio.playOnce('assets/kent/fx/FX-turretcollide.mp3');
-        health.applyDamage(component.collisionDamage);
     });
 
     //if the health component destroys this object, let's do... what?
     gameObject.on('health.destruct', function() {
-        if (window) {
-            window.alert('well shit :(');
-        }
+        setTimeout(function() {
+            engine.loadScene('plan10.lose_ending');
+        }, 5000);
     });
 };
 Plan10.Component.ShipController.alias = "plan10.shipController";
