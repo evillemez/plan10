@@ -63,6 +63,10 @@ Plan10.Component.ShipController = function(gameObject, component) {
         inputBomb = input.getButton('fire bomb');
         inputBlackHole = input.getButton('fire black hole');
         
+        if (input.getButton('quit')) {
+            gameObject.emit('plan10.splash_screen');
+        }
+        
         //play thrust sound if appropriate
         if (component.thrustSound) {
             if (inputForward || inputBackward || inputLeft || inputRight) {

@@ -1,14 +1,14 @@
 body {
     background-color: #000;     
     background-image:url('assets/screen4.png');
-    background-repeat:no-repeat;     
+    background-repeat: no-repeat;     
     background-position: center top;  
 }
             
 #game {
     margin: 0px auto;
     margin-top: 80px; 
-    background-color: #FF0;
+    background-color: #222;
     height: 600px;
     width: 800px;
     position: relative;
@@ -23,7 +23,7 @@ body {
 #splash {
     margin: 0px auto;
     margin-top: 80px; 
-    background-color: #0F0;
+    background-color: #222;
     height: 600px;
     width: 800px;
 }

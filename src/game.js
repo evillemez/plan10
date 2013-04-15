@@ -30,8 +30,9 @@ Plan10.config = {
                     'move down': 's',
                     'move up': 'w',
                     'strafe': 'shift',
-                    'fire bomb': 'e',
-                    'fire black hole': 'q'
+                    'fire bomb': 'j',
+                    'fire black hole': 'k',
+                    'quit': 'escape'
                 }
             }
         },

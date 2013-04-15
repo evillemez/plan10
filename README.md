@@ -13,7 +13,9 @@ For more on *Javelin*, see the [Javelin repository](https://github.com/evillemez
 ## Known issues ##
 
 * The physics w/ Box2d is not tuned well, the plugin for Javelin needs some modification to really work well
-* sounds holding over between scenes
+* sounds holding over between scenes in some cases
+* instantiating bombs/black holes too close to another rigidbody (inside it, basically), will create many at once
+    * For a neat one, hold `q` and `e` together and enjoy the chaos
 
 ## Overview ##
 

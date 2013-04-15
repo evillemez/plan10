@@ -29,7 +29,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     
     var theater_img = null;
     
-    var audio;
+    var audio, input;
     
     var audioPaths = [
          'assets/monologue_sound/script-01.mp3',
@@ -85,7 +85,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     component.$on('engine.create', function() {
         gameObject.disable();
         audio = gameObject.getComponent('audioEmitter');
-
+        input = gameObject.engine.getPlugin('input');
         gameObject.engine.loadAssets(assetPaths, function(loaded_assets) {
             monoArray = loaded_assets;   
             gameObject.enable();
@@ -96,6 +96,11 @@ Plan10.Component.Monologue = function(gameObject, component) {
     
     //just keep track of state  
     component.$on('engine.update', function(deltaTime) {
+        
+        //check for quit
+        if (input.getButton('quit')) {
+            gameObject.emit('plan10.splash_screen');
+        }
         
         //if starting, set framedelay to length of first frame
         if (started === false) { 
