@@ -13,7 +13,7 @@ For more on *Javelin*, see the [Javelin repository](https://github.com/evillemez
 ## Known issues ##
 
 * The physics w/ Box2d is not tuned well, the plugin for Javelin needs some modification to really work well
-
+* sounds holding over between scenes
 
 ## Overview ##
 
