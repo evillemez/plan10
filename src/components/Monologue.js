@@ -20,7 +20,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     
     var assetArray = [];   //audioArray;
     var monoArray = [];    //eventually use 1 array instead of 3
-    var monoLast = 2;     //list of assets - 1
+    var monoLast = 12;     //list of assets - 1
     var monoIndex = (-1);  //init to -1 so that it will increment to start of array upon first loop
     var imgChanged = 0;
     
@@ -30,24 +30,8 @@ Plan10.Component.Monologue = function(gameObject, component) {
     var theater_img = null;
     
     var audio;
-
-    var audioPaths = [
-         'assets/monologue_sound/script-01.mp3',
-         'assets/monologue_sound/script-02.mp3',
-         'assets/monologue_sound/script-03.mp3',
-         'assets/monologue_sound/script-04.mp3',
-         'assets/monologue_sound/script-05.mp3',
-         'assets/monologue_sound/script-06.mp3',
-         'assets/monologue_sound/script-07.mp3',
-         'assets/monologue_sound/script-08.mp3',
-         'assets/monologue_sound/script-09.mp3',
-         'assets/monologue_sound/script-10.mp3',
-         'assets/monologue_sound/script-11.mp3',
-         'assets/monologue_sound/script-12.mp3',
-         'assets/monologue_sound/script-13.mp3'   
-    ];
     
-    var assetPaths = [
+    var m_audioPaths = [
          'assets/monologue_sound/script-01.mp3',
          'assets/monologue_sound/script-02.mp3',
          'assets/monologue_sound/script-03.mp3',
@@ -60,7 +44,11 @@ Plan10.Component.Monologue = function(gameObject, component) {
          'assets/monologue_sound/script-10.mp3',
          'assets/monologue_sound/script-11.mp3',
          'assets/monologue_sound/script-12.mp3',
-         'assets/monologue_sound/script-13.mp3',
+         'assets/monologue_sound/script-13.mp3'
+      ];
+   
+   
+    var m_assetPaths = [
          'assets/monologue_image/script-01.png',
          'assets/monologue_image/script-02.png',
          'assets/monologue_image/script-03.png',
@@ -76,7 +64,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
          'assets/monologue_image/script-13.png'            
     ];    
 
-    var timeArray = [
+    var m_timeArray = [
         15,
         4,
         6,
@@ -108,6 +96,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     
     //just keep track of state  
     component.$on('engine.update', function(deltaTime) {
+        
         //if starting, set framedelay to length of first frame
         if (started === false) { 
             started = true;
@@ -119,7 +108,6 @@ Plan10.Component.Monologue = function(gameObject, component) {
         //out when the monologue has finished and set "finished" to true
             if (lastTimeDrawn + frameDelay <= gameObject.engine.time) {       
                 lastTimeDrawn = gameObject.engine.time;
-                audio.stopSound('assets/monologue_sound/script-01.mp3');
                 
                 //log some stuff
                 console.log("monoindex: " + monoIndex);
@@ -140,8 +128,13 @@ Plan10.Component.Monologue = function(gameObject, component) {
                 // added "loop_breaker" because the game still plays the audio file even though I can tell Canvas to stop drawing
                 // this leads to the canvas clearing, but the final audio playing 1 more time before the next scene loads
                 // not sure why
-                  if (!(loop_breaker)) { audio.playLoop(assetPaths[monoIndex]);}
-                  console.log("assetsPaths[monoIndex] " + assetPaths[monoIndex]);
+                  if (!(loop_breaker)) { 
+                  
+                  audio.playOnce(audioPaths[monoIndex]);
+                  //audio.stopSound(assetPaths[monoIndex]);
+                
+                  }
+                  
             
             }
             
@@ -159,7 +152,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     
     //actually draw the monologue images/text
     component.$on('canvas2d.draw', function(context) {
-         context.drawImage(monoArray[(monoIndex + 13)],0,0,800,600);
+         context.drawImage(monoArray[monoIndex],0,0,800,600);
          frameDelay = (timeArray[monoIndex] * 1000);               
          
          if (canvas_plugin_lastcall) {
