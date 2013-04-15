@@ -77,7 +77,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
         8,
         8,
         12,
-        3
+        12
     ];
 
 
