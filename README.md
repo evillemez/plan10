@@ -9,7 +9,11 @@ For more on *Javelin*, see the [Javelin repository](https://github.com/evillemez
 * Epic story line spanning 70 years!
 * Multiple endings!
 * EXTREME GRAPHICS! (In some places, thanks to grits...)
-* 
+
+## Known issues ##
+
+* The physics w/ Box2d is not tuned well, the plugin for Javelin needs some modification to really work well
+
 
 ## Overview ##
 

@@ -18,12 +18,12 @@ Plan10.Prefab.Turret = {
             deathPrefab: 'plan10.bombExplosion'
         },
         'plan10.turretController': {
-            energyPerShot: 10,
+            energyPerShot: 5,
             maxEnergy: 100,
             currentEnergy: 100,
             fireRate: 500,
             laserPrefab: 'plan10.laser',
-            driftForce: 100000,
+            driftForce: 10000,
             driftAngle: 180
         },
         'rigidbody2d': {

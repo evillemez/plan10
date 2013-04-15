@@ -159,6 +159,7 @@ Plan10.Component.ShipController = function(gameObject, component) {
     //if the health component destroys this object, let's do... what?
     gameObject.on('health.destruct', function() {
         setTimeout(function() {
+            audio.stopSound();
             engine.loadScene('plan10.lose_ending');
         }, 5000);
     });
