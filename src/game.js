@@ -10,13 +10,15 @@ var Plan10 = Plan10 || {};
 Plan10.Component = {};      //for game object components
 Plan10.Prefab = {};         //for prefab definitions
 Plan10.Scene = {};          //for scene definitions
-Plan10.Plugin = {};         //for experimental engine plugins
 
 //main game config passed to Javelin engine instance
 Plan10.config = {
     name: "Plan 10 from Outer Space!",
     debug: true,
     stepsPerSecond: 1000/60,
+    autoregisterComponents: Plan10.Component,
+    autoregisterPrefabs: Plan10.Prefab,
+    autoregisterScenes: Plan10.Scene,
     loader: {
         assetUrl: "http://localhost/plan10/"
     },
@@ -41,8 +43,7 @@ Plan10.config = {
             stepHZ: 1.0/60.0,
             velocityIterations: 10,
             positionIterations: 10,
-            clearForces: true,
-            pixelsPerUnit: 50
+            clearForces: true
         },
         'canvas2d': {
             renderTargetId: 'game',
@@ -51,10 +52,5 @@ Plan10.config = {
             framesPerSecond: 1000/60,
             layers: ['background', 'default', 'foreground']
         },
-    },
-    autoregisterComponents: Plan10.Component,
-    autoregisterPrefabs: Plan10.Prefab,
-    autoregisterScenes: Plan10.Scene,
-    autoregisterPlugins: Plan10.Plugin,
-    requiredAssets: []
+    }
 };

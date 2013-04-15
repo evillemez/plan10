@@ -3,8 +3,8 @@
 Plan10.Scene.Main = {
     name: "plan10.main",
     objects: [
-        'plan10.player',
-        'plan10.turretManager',
+        'plan10.player',            //in src/prefabs/Player.js
+        'plan10.turretManager',     //in src/prefabs/TurretManager.js
         {
             fromPrefab: 'plan10.asteroid',
             components: {
@@ -29,9 +29,5 @@ Plan10.Scene.Main = {
                 }
             }
         }
-//        ,'plan10.asteroidManager'
-//        ,'plan10.background'
-//        ,'plan10.filmgrain'
-//        ,'plan10.timer'
     ]
 };
