@@ -8,6 +8,7 @@ Plan10.Prefab.Laser = {
             volume: 0.8
         },
         'plan10.projectile': {
+            damage: 50,
             velocity: 100000,
             fireSound: 'assets/kent/fx/FX-pew.mp3',
             explosionPrefab: 'plan10.laserImpact',

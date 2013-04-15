@@ -5,7 +5,10 @@ Plan10.Prefab.Asteroid = {
     components: {
         'plan10.asteroid': {},
         'plan10.health': {
-            maxHealth: 500
+            maxHealth: 300,
+            currentHealth: 300,
+            collisionDamage: 10,
+            deathPrefab: 'plan10.shipExplosion'
         },
         'sprite': {
             imagePath: 'assets/asteroid.png',
