@@ -8,6 +8,9 @@ Plan10.Scene.Lose = {
             components: {
                 'plan10.monologue': {
                     dataFile: 'assets/monologue_lose.json'
+                },
+                'audioEmitter': {
+                    spatial: false
                 }
             }
         }

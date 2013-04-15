@@ -18,6 +18,7 @@ Plan10.Prefab.Player = {
             detonateDelay: 500,
             thrustSound: 'assets/kent/fx/FX-thruster.mp3'
         },
+        'plan10.teleport': {},
         'sprite': {
             imagePath: 'assets/ship.png'
         },
@@ -37,7 +38,7 @@ Plan10.Prefab.Player = {
         },
         'transform2d': {
             position: {
-                x: 200,
+                x: 100,
                 y: 300
             }
         }

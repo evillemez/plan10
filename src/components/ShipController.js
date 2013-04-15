@@ -31,6 +31,7 @@ Plan10.Component.ShipController = function(gameObject, component) {
     var timeBlackHoleDetonated = 0;
     var isMoving = false;
     var engine = null;
+    var soundCollisionWarning = false;
     
     //on create load required assets
     component.$on('engine.create', function() {
@@ -45,9 +46,16 @@ Plan10.Component.ShipController = function(gameObject, component) {
                 sprite.image = assets[0];
 
                 gameObject.enable();
-                audio.playOnce('assets/kent/plan 10 script-15.mp3');
             });
         }
+        
+        //hacks to play audio
+        audio.playOnce('assets/kent/script-15.mp3');
+        setTimeout(function() {
+            if (gameObject.id !== -1) {
+                audio.playOnce('assets/kent/script-blackhole.mp3');
+            }
+        }, 8500);
     });
     
     //get input values, handle firing weapons
@@ -158,6 +166,11 @@ Plan10.Component.ShipController = function(gameObject, component) {
     //use audio component to play collision noise and/or commentary
     component.$on('box2d.collision.enter', function() {
         audio.playOnce('assets/kent/fx/FX-turretcollide.mp3');
+        
+        if (!soundCollisionWarning) {
+            soundCollisionWarning = true;
+            audio.playOnce('assets/kent/script-collision-damage.mp3');
+        }
     });
 
     //if the health component destroys this object, let's do... what?

@@ -3,8 +3,7 @@
         {
             "image": "assets/win.png",
             "time": "15",
-            "sound": "assets/kent/plan10script23"
+            "sound": "assets/kent/plan10script23.mp3"
         }
-
-    ],
+    ]
 }

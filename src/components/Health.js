@@ -1,7 +1,8 @@
 'use strict';
 
 /**
- * Controls health and destruction of various objects
+ * Controls health and destruction of various objects that have health, and draws health bars that were shamelessly
+ * stolen from Grits.  (thanks :) )
  */
 Plan10.Component.Health = function(gameObject, component) {
     //default starting values (override from prefab definitions)

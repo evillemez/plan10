@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Asteroid registers/unregisters its self with the manager
+ * Asteroid triggers the win ending if it's destroyed.
  */
 Plan10.Component.Asteroid = function(gameObject, component) {
     var engine = null;

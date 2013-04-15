@@ -8,7 +8,10 @@ Plan10.Scene.Win = {
             components: {
                 'plan10.monologue': {
                     dataFile: 'assets/monologue_win.json'
-                }
+                },
+                'audioEmitter': {
+                    spatial: false
+                }                
             }
         }
     ]

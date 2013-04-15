@@ -22,7 +22,7 @@ $(function() {
     });
     
     //set up intro and play buttons on splash screen
-    $('#intro').mouseup(function() {
+    $('#intro-button').mouseup(function() {
         game.loadScene('plan10.intro', function() {
             $('#splash').hide();
             $('#game').show();
@@ -30,7 +30,7 @@ $(function() {
         });
     });
 
-    $('#play').mouseup(function() {
+    $('#play-button').mouseup(function() {
         game.loadScene('plan10.main', function() {
             $('#splash').hide();
             $('#game').show();

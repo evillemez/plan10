@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Controls all projectiles by moving them forwards, and destroying them if they have lived
+ * for too long, or collide with another object.
+ */
 Plan10.Component.Projectile = function(gameObject, component) {
     component.damage = null;
     component.velocity = 100;

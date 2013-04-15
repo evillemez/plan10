@@ -1,36 +1,37 @@
 'use strict';
 
+/**
+ * Scrolls a starfield on the background to make things like EPIC!
+ */
 Plan10.Component.Background = function(gameObject, component) {
     
-//Variable declarations    
-var stars = null;
-var backgroundColor = 'black'; 
-var draw_start_x = 0;
-var draw_start_y = 0;
-var scrollDelay = 0;
-var lastTimeDrawn = 0;
+    //Variable declarations    
+    var stars = null;
+    var backgroundColor = 'black'; 
+    var draw_start_x = 0;
+    var draw_start_y = 0;
+    var scrollDelay = 0;
+    var lastTimeDrawn = 0;
  
     
-     component.$on('engine.create', function() {
+    component.$on('engine.create', function() {
         gameObject.disable();
 
         gameObject.engine.loadAsset('assets/starfield.png',function(image) {
             stars = image;
             gameObject.enable(); 
         });
-        
-      //end of engine create
-      });
+    });
 
- component.$on('engine.update', function(deltaTime) {
+    component.$on('engine.update', function(deltaTime) {
                 
-                if (lastTimeDrawn + scrollDelay <= gameObject.engine.time) {       
-                lastTimeDrawn = gameObject.engine.time;
-                //console.log("My God, it's full of stars!");
+        if (lastTimeDrawn + scrollDelay <= gameObject.engine.time) {       
+            lastTimeDrawn = gameObject.engine.time;
+            //console.log("My God, it's full of stars!");
 
-                }
+        }
               
- });
+    });
     
     
     component.$on('canvas2d.draw', function(context) {

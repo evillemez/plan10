@@ -4,26 +4,19 @@ This is the game *Plan 10 From Outer Space!*. It was developed in sync with the 
 
 For more on *Javelin*, see the [Javelin repository](https://github.com/evillemez/javelin).  It's poorly documented for now, and probably has a few hacks for the sake of getting this game done for the contest.  It's also missing a fair amount of features I didn't have time to implement for the contest.
 
+## Controls ##
+
+* `w`, `a`, `s`, `d` to move forwards/backwards and rotate
+* `shift + a` and `shift + d` to strafe left/right
+* `j` to fire bomb, press again to detonate
+* `k` to fire black hole, press again to detonate
+* `escape` to go back to splash screen (Note that actually doing this will cause problems with the audio :) )
+
 ## Features! ##
 
 * Epic story line spanning 70 years!
 * Multiple endings!
 * EXTREME GRAPHICS! (In some places, thanks to grits...)
-
-## Known issues ##
-
-* The physics w/ Box2d is not tuned well, the plugin for Javelin needs some modification to really work well
-* sounds holding over between scenes in some cases
-* instantiating bombs/black holes too close to another rigidbody (inside it, basically), will create many at once
-    * For a neat one, hold `q` and `e` together and enjoy the chaos
-
-## Overview ##
-
-Months ago I decided to write a game engine in javascript, because I thought it would be fun, and I have two specific projects that I would like to pursue with it.  I could have used another engine, but I couldn't find one that I particularly liked.  I have some experience using Unity3d, and ultimate I wanted to be able approach a game the way I would with Unity3d, but use the same open-source toolkit I used for web development.  So, I started Javelin.
-
-Once I learned about the course (a week or two after I decided to actually start on the engine), I thought it would be a good opportunity to tackle specific issues.  I figured the contest would give me a way to focus on getting the bare-minimum implemented in order to have a functioning, but simple, game.  So... I needed a premise for a game.
-
-My wife brought up saving the Earth from a meteor, and that immediately seemed like a good idea because the premise would be enough to build a game that demonstrated all, or most, of the concepts covered in the class, while not requiring many artistic assets.
 
 ## Structure ##
 
@@ -44,6 +37,23 @@ The actual game code is organized as such:
 `src/components/` - This is where all the logic lives.  All game code is defined in a *component* that gets attached to a game object.  All of the components that are specific to this game are named with  `plan10.` prefix.  All other, such as `transform2d` or `sprite`, are components provided by *Javelin*.
 
 So, to recap - the game defines some config for the engine, then the engine loads a scene which instantiates game objects.  Game objects are defined either in-line in a scene, or in a prefab.  When the engine instantiates a prefab, it adds instances of components to it, and configures them based on the values in the object definition.
+
+## Known issues ##
+
+* The physics w/ Box2d is not tuned well, the plugin for Javelin needs some modification to really work well
+* sounds holding over between scenes
+* sounds playing double when pre loaded
+* generally the audio plugin in javelin needs to be fixed, it's not handling a lot of things properly
+* instantiating bombs/black holes too close to another rigidbody (inside it, basically), will create many at once
+    * For a neat bug, hold `q` and `e` together and enjoy the chaos
+
+## Backstory ##
+
+Months ago I decided to write a game engine in javascript, because I thought it would be fun, and I have two specific projects that I would like to pursue with it.  I could have used another engine, but I couldn't find one that I particularly liked.  I have some experience using Unity3d, and ultimate I wanted to be able approach a game the way I would with Unity3d, but use the same open-source toolkit I used for web development.  So, I started Javelin.
+
+Once I learned about the course (a week or two after I decided to actually start on the engine), I thought it would be a good opportunity to tackle specific issues.  I figured the contest would give me a way to focus on getting the bare-minimum implemented in order to have a functioning, but simple, game.  So... I needed a premise for a game.
+
+My wife brought up saving the Earth from a meteor, and that immediately seemed like a good idea because the premise would be enough to build a game that demonstrated all, or most, of the concepts covered in the class, while not requiring many artistic assets.
 
 ## Assets ##
 

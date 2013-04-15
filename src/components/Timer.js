@@ -2,7 +2,7 @@
 
 /**
  * Timer keeps track of how much time is left to complete the mission.
- * When the timer runs out, it loads the end scene
+ * When the timer runs out, it loads the lose ending
  */
 Plan10.Component.Timer = function(gameObject, component) {
     //the asteroid manager needs to set this

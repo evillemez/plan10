@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Used for player projectile detonations (for bomb and black hole).  Projectiles will apply either explosion or
+ * implosion forces to bodies near them, if configured to do so.
+ */
 Plan10.Component.Detonation = function(gameObject, component) {
     component.detonationSound = null;
     component.detonationForce = null;

@@ -22,8 +22,43 @@ body {
 
 #splash {
     margin: 0px auto;
-    margin-top: 80px; 
-    background-color: #222;
+    margin-top: 80px;
+    background-image: url('assets/splash.png');
     height: 600px;
     width: 800px;
+    position: relative;
+}
+
+#buttonGroup {
+    position: absolute;
+    margin-top: 150px;
+}
+
+.button {
+    background-image: url('assets/clapper.jpg');
+    background-repeat: no-repeat;     
+    background-position: center top;  
+    height: 350px;
+    width: 300px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+
+.button:hover {
+    border: 2px solid #FF0;
+}
+
+.buttonText {
+    font-size: 30px;
+    padding: 40px;
+    text-align: center;
+}
+
+#play-button {
+    float: right;
+    margin-left: 80px;
+}
+
+#intro-button {
+    float: left;
 }

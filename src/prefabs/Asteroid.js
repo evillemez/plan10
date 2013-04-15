@@ -4,6 +4,7 @@ Plan10.Prefab.Asteroid = {
     name: 'plan10.asteroid',
     components: {
         'plan10.asteroid': {},
+        'plan10.teleport': {},
         'plan10.health': {
             maxHealth: 2000,
             currentHealth: 2000,

@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Controls firing at asteroid targets, if a target is present.  Also controls energy
+ * bars that were shamelessly ripped from Grits.
+ */
 Plan10.Component.TurretController = function(gameObject, component) {
     
     //this is a reference back to the turretManager, the turret manager needs
@@ -54,8 +58,8 @@ Plan10.Component.TurretController = function(gameObject, component) {
                 var lt = laser.getComponent('transform2d');
                 lt.rotation = transform.rotation;
                 
-                var x = Math.cos(transform.rotation * Javelin.PI_OVER_180) * 30;
-                var y = Math.sin(transform.rotation * Javelin.PI_OVER_180) * 30;
+                var x = Math.cos(transform.rotation * Javelin.PI_OVER_180) * 40;
+                var y = Math.sin(transform.rotation * Javelin.PI_OVER_180) * 40;
                 
                 lt.position.x = transform.position.x + x;
                 lt.position.y = transform.position.y + y;
@@ -83,7 +87,20 @@ Plan10.Component.TurretController = function(gameObject, component) {
             gameObject.destroy();
         }
         
+        //check for low energy sound
+        if (component.manager && component.currentEnergy <= 0 && !component.manager.soundLowEnergy) {
+            component.manager.soundLowEnergy = true;
+            audio.playOnce('assets/kent/script-limited-energy.mp3');
+        }
+        
         rigidbody.applyForce(component.driftAngle, component.driftForce);
+    });
+    
+    component.$on('box2d.collision.enter', function(gameObject) {
+        if (component.manager && !component.manager.soundTurretDamage) {
+            component.manager.soundTurretDamage = true;
+            audio.playOnce('assets/kent/script-turretdamage.mp3');
+        }
     });
     
     component.$on('engine.create', function() {

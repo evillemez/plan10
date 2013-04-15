@@ -1,7 +1,7 @@
 'use strict';
 
-/**
-    The turret manager is in charge of instantiating new turrets.
+/*
+ * The turret manager is in charge of instantiating new turrets.
  */
 Plan10.Component.TurretManager = function(gameObject, component) {
     //the turret to instantiate
@@ -11,6 +11,8 @@ Plan10.Component.TurretManager = function(gameObject, component) {
     component.maxTurrets = 4;
     component.spawnY = 150;
     component.spawnX = 800;
+    component.soundLowEnergy = false;
+    component.soundTurretDamage = false;
     
     //time in ms to delay creating new turrets if not at max
     component.spawnDelay = 3000;
