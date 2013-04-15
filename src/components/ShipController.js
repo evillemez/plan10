@@ -21,6 +21,7 @@ Plan10.Component.ShipController = function(gameObject, component) {
     var audio = gameObject.getComponent('audioEmitter');
     var input = gameObject.engine.getPlugin('input');
     var sprite = gameObject.getComponent('sprite');
+    var health = gameObject.getComponent('plan10.health');
     var currentTime = 0;
     var activeBomb = null;
     var activeBlackHole = null;
@@ -69,6 +70,8 @@ Plan10.Component.ShipController = function(gameObject, component) {
             }
         }
         
+        var x, y;
+        
         if (inputBomb) {
             if (activeBomb !== null && currentTime - timeBombFired >= component.detonateDelay) {
                 timeBombDetonated = currentTime;
@@ -78,10 +81,15 @@ Plan10.Component.ShipController = function(gameObject, component) {
                 //instantiate bomb in front of ship
                 var bomb = gameObject.engine.instantiatePrefab(component.bombPrefab);
                 timeBombFired = currentTime;
+                
+                x = Math.cos(transform.rotation * Javelin.PI_OVER_180) * 60;
+                y = Math.sin(transform.rotation * Javelin.PI_OVER_180) * 60;                                
+                
                 bomb.getComponent('transform2d').position = {
-                    x: transform.position.x + 100,
-                    y: transform.position.y + 100
+                    x: transform.position.x + x,
+                    y: transform.position.y + y
                 };
+
                 bomb.getComponent('transform2d').rotation = transform.rotation;
                 activeBomb = bomb.getComponent('plan10.projectile');
                 bomb.on('projectile.destroy', function() {
@@ -100,9 +108,13 @@ Plan10.Component.ShipController = function(gameObject, component) {
                 //instantiate bomb in front of ship
                 var blackHole = gameObject.engine.instantiatePrefab(component.blackHolePrefab);
                 timeBlackHoleFired = currentTime;
+
+                x = Math.cos(transform.rotation * Javelin.PI_OVER_180) * 60;
+                y = Math.sin(transform.rotation * Javelin.PI_OVER_180) * 60;                                
+                
                 blackHole.getComponent('transform2d').position = {
-                    x: transform.position.x + 100,
-                    y: transform.position.y + 100
+                    x: transform.position.x + x,
+                    y: transform.position.y + y
                 };
                 blackHole.getComponent('transform2d').rotation = transform.rotation;
                 activeBlackHole = blackHole.getComponent('plan10.projectile');
@@ -140,6 +152,7 @@ Plan10.Component.ShipController = function(gameObject, component) {
     //use audio component to play collision noise and/or commentary
     component.$on('box2d.collision.enter', function() {
         audio.playOnce('assets/kent/fx/FX-turretcollide.mp3');
+        health.applyDamage(component.collisionDamage);
     });
 
     //if the health component destroys this object, let's do... what?

@@ -16,7 +16,10 @@ Plan10.Prefab.Turret = {
             deathPrefab: 'plan10.bombExplosion'
         },
         'plan10.turretController': {
-            
+            energyPerShot: 10,
+            maxEnergy: 10000,
+            fireRate: 500,
+            laserPrefab: 'plan10.laser'
         },
         'rigidbody2d': {
             radius: 20,
@@ -24,7 +27,8 @@ Plan10.Prefab.Turret = {
             restitution: 0.0,
             friction: 0.0,
             damping: 1,
-            angularDamping: 0.2
+            angularDamping: 0.2,
+            fixedRotation: true
         }
     },
     children: [

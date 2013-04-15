@@ -14,13 +14,13 @@ $(function() {
     
     //listen for event from within game to show the splash screen
     game.on('plan10.splash_screen', function() {
-        alert('k');
-        game.stop();
-        $('#game').hide();
-        $('#splash').show();
+        game.stop(function() {
+            $('#game').hide();
+            $('#splash').show();
+        });
     });
     
-    //set up intro/play buttons on splash screen
+    //set up intro and play buttons on splash screen
     $('#intro').mouseup(function() {
         game.loadScene('plan10.intro', function() {
             $('#splash').hide();
