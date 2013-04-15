@@ -31,7 +31,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     
     var audio;
     
-    var m_audioPaths = [
+    var audioPaths = [
          'assets/monologue_sound/script-01.mp3',
          'assets/monologue_sound/script-02.mp3',
          'assets/monologue_sound/script-03.mp3',
@@ -48,7 +48,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
       ];
    
    
-    var m_assetPaths = [
+    var assetPaths = [
          'assets/monologue_image/script-01.png',
          'assets/monologue_image/script-02.png',
          'assets/monologue_image/script-03.png',
@@ -64,7 +64,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
          'assets/monologue_image/script-13.png'            
     ];    
 
-    var m_timeArray = [
+    var timeArray = [
         15,
         4,
         6,
