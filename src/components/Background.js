@@ -36,7 +36,7 @@ var lastTimeDrawn = 0;
     component.$on('canvas2d.draw', function(context) {
         //draw the star field by setting a black background and moving a 
         //transparent image w/ starts over it
-        console.log("y before: " + draw_start_y);
+//        console.log("y before: " + draw_start_y);
         context.fillStyle = backgroundColor;
         context.fillRect(0,0,800,600);
         context.drawImage(stars,draw_start_x,draw_start_y,800,600);
@@ -48,7 +48,7 @@ var lastTimeDrawn = 0;
         }
  
          draw_start_y -= 2;
-         console.log("y after: " + draw_start_y);
+//         console.log("y after: " + draw_start_y);
         
 
 

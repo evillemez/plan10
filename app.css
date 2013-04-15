@@ -14,11 +14,16 @@ body {
     position: relative;
 }
 
+#game canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 #splash {
     margin: 0px auto;
     margin-top: 80px; 
     background-color: #0F0;
     height: 600px;
     width: 800px;
-    position: relative;
 }

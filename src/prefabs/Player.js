@@ -2,7 +2,7 @@
 
 Plan10.Prefab.Player = {
     name: "plan10.player",
-    layer: 'foreground',
+    layer: 'default',
     components: {
         'audioListener': {},
         'audioEmitter': {
@@ -22,8 +22,10 @@ Plan10.Prefab.Player = {
             imagePath: 'assets/ship.png'
         },
         'plan10.health': {
-            maxHealth: 200,
-            deathPrefab: null
+            maxHealth: 400,
+            currentHealth: 400,
+            collisionDamage: 50,
+            deathPrefab: 'plan10.shipExplosion'
         },
         'rigidbody2d': {
             radius: 40,

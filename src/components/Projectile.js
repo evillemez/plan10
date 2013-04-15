@@ -1,8 +1,7 @@
 'use strict';
 
 Plan10.Component.Projectile = function(gameObject, component) {
-    component.damage = 100;
-    component.radius = 100;
+    component.damage = null;
     component.velocity = 100;
     component.implode = false;
     component.fireSound = null;
@@ -46,6 +45,13 @@ Plan10.Component.Projectile = function(gameObject, component) {
     component.$on('box2d.trigger.enter', function(gameObject) {
         if (!gameObject.hasComponent('plan10.proximitySensor')) {
             component.detonate();
+        }
+    });
+    
+    component.$on('box2d.collision.enter', function(gameObject) {
+        component.detonate();
+        if (component.damage && gameObject.hasComponent('plan10.health')) {
+            gameObject.getComponent('plan10.health').applyDamage(component.damage);
         }
     });
 };

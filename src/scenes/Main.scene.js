@@ -5,17 +5,6 @@ Plan10.Scene.Main = {
     objects: [
         'plan10.player',
         {
-            fromPrefab: 'plan10.turret',
-            components: {
-                'transform2d': {
-                    position: {
-                        x: 500,
-                        y: 300
-                    }
-                }
-            }
-        },
-        {
             fromPrefab: 'plan10.asteroid',
             components: {
                 'transform2d': {
@@ -35,11 +24,11 @@ Plan10.Scene.Main = {
             name: 'timer',
             components: { 
                 'plan10.timer': {
-                    totalTime: 300
+                    totalTime: 200
                 }
             }
         }
-//        ,'plan10.turretManager'
+        ,'plan10.turretManager'
 //        ,'plan10.asteroidManager'
 //        ,'plan10.background'
 //        ,'plan10.filmgrain'

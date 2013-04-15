@@ -5,7 +5,10 @@ Plan10.Prefab.Asteroid = {
     components: {
         'plan10.asteroid': {},
         'plan10.health': {
-            maxHealth: 500
+            maxHealth: 2000,
+            currentHealth: 2000,
+            collisionDamage: 10,
+            deathPrefab: 'plan10.shipExplosion'
         },
         'sprite': {
             imagePath: 'assets/asteroid.png',
@@ -17,7 +20,7 @@ Plan10.Prefab.Asteroid = {
         'rigidbody2d': {
             height: 100,
             width: 60,
-            density: 1,
+            density: 0.5,
             dampening: 0.8
         }
     }
