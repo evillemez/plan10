@@ -35,7 +35,7 @@ Plan10.Scene.Main = {
             name: 'timer',
             components: { 
                 'plan10.timer': {
-                    totalTime: 10
+                    totalTime: 300
                 }
             }
         }
