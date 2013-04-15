@@ -6,9 +6,7 @@ Plan10.Scene.Intro = {
         {
             name: "Monologue",
             components: {
-                'plan10.monologue': {
-                    dataFile: 'assets/monologue_intro.json'
-                }
+                'plan10.monologue': { }
             }
         }
     ]

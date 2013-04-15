@@ -18,6 +18,7 @@ Plan10.Component.Monologue = function(gameObject, component) {
     var canvas_plugin_finished = 0; //when canvas is finished, load next scene
     var loop_breaker           = 0; 
     
+    var assetArray = [];   //audioArray;
     var monoArray = [];    //eventually use 1 array instead of 3
     var monoLast = 12;     //list of assets - 1
     var monoIndex = (-1);  //init to -1 so that it will increment to start of array upon first loop
@@ -31,35 +32,36 @@ Plan10.Component.Monologue = function(gameObject, component) {
     var audio;
     
     var audioPaths = [
-         'assets/plan10intro/script-01.mp3',
-         'assets/plan10intro/script-02.mp3',
-         'assets/plan10intro/script-03.mp3',
-         'assets/plan10intro/script-04.mp3',
-         'assets/plan10intro/script-05.mp3',
-         'assets/plan10intro/script-06.mp3',
-         'assets/plan10intro/script-07.mp3',
-         'assets/plan10intro/script-08.mp3',
-         'assets/plan10intro/script-09.mp3',
-         'assets/plan10intro/script-10.mp3',
-         'assets/plan10intro/script-11.mp3',
-         'assets/plan10intro/script-12.mp3',
-         'assets/plan10intro/script-13.mp3'
-    ]; 
-
-    var imgPaths = [
-            'assets/monologue_image/script-01.png',
-            'assets/monologue_image/script-02.png',
-            'assets/monologue_image/script-03.png',
-            'assets/monologue_image/script-04.png',
-            'assets/monologue_image/script-05.png',
-            'assets/monologue_image/script-06.png',
-            'assets/monologue_image/script-07.png',
-            'assets/monologue_image/script-08.png',
-            'assets/monologue_image/script-09.png',
-            'assets/monologue_image/script-10.png',
-            'assets/monologue_image/script-11.png',
-            'assets/monologue_image/script-12.png',
-            'assets/monologue_image/script-13.png'            
+         'assets/monologue_sound/script-01.mp3',
+         'assets/monologue_sound/script-02.mp3',
+         'assets/monologue_sound/script-03.mp3',
+         'assets/monologue_sound/script-04.mp3',
+         'assets/monologue_sound/script-05.mp3',
+         'assets/monologue_sound/script-06.mp3',
+         'assets/monologue_sound/script-07.mp3',
+         'assets/monologue_sound/script-08.mp3',
+         'assets/monologue_sound/script-09.mp3',
+         'assets/monologue_sound/script-10.mp3',
+         'assets/monologue_sound/script-11.mp3',
+         'assets/monologue_sound/script-12.mp3',
+         'assets/monologue_sound/script-13.mp3'
+      ];
+   
+   
+    var assetPaths = [
+         'assets/monologue_image/script-01.png',
+         'assets/monologue_image/script-02.png',
+         'assets/monologue_image/script-03.png',
+         'assets/monologue_image/script-04.png',
+         'assets/monologue_image/script-05.png',
+         'assets/monologue_image/script-06.png',
+         'assets/monologue_image/script-07.png',
+         'assets/monologue_image/script-08.png',
+         'assets/monologue_image/script-09.png',
+         'assets/monologue_image/script-10.png',
+         'assets/monologue_image/script-11.png',
+         'assets/monologue_image/script-12.png',
+         'assets/monologue_image/script-13.png'            
     ];    
 
     var timeArray = [
@@ -84,26 +86,17 @@ Plan10.Component.Monologue = function(gameObject, component) {
         gameObject.disable();
         audio = gameObject.getComponent('audioEmitter');
 
-       // gameObject.engine.loadAsset(audioPaths[0], function() {
-           //nothing to do!
-        //});
-        
-        gameObject.engine.loadAsset('assets/Theater_Working_Demo.png',function(image) {
-            theater_img = image;
+        gameObject.engine.loadAssets(assetPaths, function(loaded_assets) {
+            monoArray = loaded_assets;   
+            gameObject.enable();
         });
-        
-        gameObject.engine.loadAssets(imgPaths, function(loaded_images) {                
-            monoArray = loaded_images;
-            gameObject.enable(); 
 
-        });
-                
-    
     });
 
     
     //just keep track of state  
     component.$on('engine.update', function(deltaTime) {
+        
         //if starting, set framedelay to length of first frame
         if (started === false) { 
             started = true;
@@ -135,15 +128,22 @@ Plan10.Component.Monologue = function(gameObject, component) {
                 // added "loop_breaker" because the game still plays the audio file even though I can tell Canvas to stop drawing
                 // this leads to the canvas clearing, but the final audio playing 1 more time before the next scene loads
                 // not sure why
-                  if (!(loop_breaker)) { audio.playOnce(audioPaths[monoIndex]);}
+                  if (!(loop_breaker)) { 
+                  
+                  audio.playOnce(audioPaths[monoIndex]);
+                  //audio.stopSound(assetPaths[monoIndex]);
+                
+                  }
+                  
             
             }
             
             else {
             console.log("I think I got it");
-            gameObject.engine.loadScene('plan10.main', function() {
-                    gameObject.engine.run();
-            });
+           // gameObject.engine.loadScene('plan10.main', function() {
+           //         gameObject.engine.run();
+           // });
+             gameObject.emit('plan10.splash_screen');
             }
         } 
    
