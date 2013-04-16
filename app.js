@@ -23,19 +23,23 @@ $(function() {
     
     //set up intro and play buttons on splash screen
     $('#intro-button').mouseup(function() {
-        game.loadScene('plan10.intro', function() {
-            $('#splash').hide();
-            $('#game').show();
-            game.run();
-        });
+        if (!game.loading) {
+            game.loadScene('plan10.intro', function() {
+                $('#splash').hide();
+                $('#game').show();
+                game.run();
+            });
+        }
     });
 
     $('#play-button').mouseup(function() {
-        game.loadScene('plan10.main', function() {
-            $('#splash').hide();
-            $('#game').show();
-            game.run();
-        });
+        if (!game.loading) {
+            game.loadScene('plan10.main', function() {
+                $('#splash').hide();
+                $('#game').show();
+                game.run();
+            });
+        }
     });
 });
 

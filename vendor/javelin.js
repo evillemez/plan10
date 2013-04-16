@@ -1303,6 +1303,7 @@ Javelin.Engine.POST_UPDATE = 1;
 Javelin.Engine.prototype.reset = function() {
     //general state
     this.running = false;
+    this.loading = false;
     this.updating = false;
     this.isRunningSlowly = false;
     this.currentFps = 0.0;
@@ -1692,6 +1693,7 @@ Javelin.Engine.prototype.loadScene = function(name, callback) {
         
         return;
     }
+    this.loading = true;
     
     this.reset();
     
@@ -1721,19 +1723,24 @@ Javelin.Engine.prototype.loadScene = function(name, callback) {
         }
     }
 
-    for (var i = 0; i < scene.objects.length; i++) {
-        this.instantiate(scene.objects[i]);
-    }
-    
+    var engine = this;
     if (scene.preLoad) {
         this.loadAssets(scene.preLoad, function(assets) {
+            engine.loading = false;
+            for (var i = 0; i < scene.objects.length; i++) {
+                engine.instantiate(scene.objects[i]);
+            }
             if (callback) {
                 callback();
             } else {
-                this.run();
+                engine.run();
             }
         });
     } else {
+        engine.loading = false;
+        for (var i = 0; i < scene.objects.length; i++) {
+            this.instantiate(scene.objects[i]);
+        }
         if (callback) {
             callback();
         } else {
