@@ -1,6 +1,6 @@
 # README #
 
-This is the game *Plan 10 From Outer Space!*. It was developed in sync with the *Javelin* game engine for submission in the Udacity 255 HTML5 Game Development course contest.
+This is the game *Plan 10 From Outer Space!*. It was developed in sync with the *Javelin* game engine for submission in the Udacity 255 HTML5 Game Development course contest.  It was developed by [RKdev](https://github.com/RKdev) and mysef, with sound contributed by [Alkaizer](http://alkaizer.newgrounds.com/).
 
 For more on *Javelin*, see the [Javelin repository](https://github.com/evillemez/javelin).  It's poorly documented for now, and probably has a few hacks for the sake of getting this game done for the contest.  It's also missing a fair amount of features I didn't have time to implement for the contest.
 
