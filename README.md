@@ -4,6 +4,8 @@ This is the game *Plan 10 From Outer Space!*. It was developed in sync with the 
 
 For more on *Javelin*, see the [Javelin repository](https://github.com/evillemez/javelin).  It's poorly documented for now, and probably has a few hacks for the sake of getting this game done for the contest.  It's also missing a fair amount of features I didn't have time to implement for the contest.
 
+> Note: if you are going to build this repo yourself, there are some other files you'll need.  You'll need `javelin.js` from the Javelin repo, which is also built with grunt.  And you'll need box2d.  It's best to take the version included w/ the gritsgame source.  Both of these files should be placed in `vendor/`.  Or,  the easiest way to run a local working version is to just clone the `gh-pages` branch, which includes all of the necessary dependencies.
+
 ## Controls ##
 
 * `w`, `a`, `s`, `d` to move forwards/backwards and rotate
@@ -47,7 +49,7 @@ So, to recap - the game defines some config for the engine, then the engine load
     * multiple sounds may trigger at once
     * generally the audio plugin in javelin needs to be fixed, it's not handling a lot of things properly
 * instantiating bombs/black holes too close to another rigidbody (inside it, basically), will create many at once
-    * For a neat bug, hold `q` and `e` together and enjoy the chaos
+    * For a neat bug, hold `j` and `k` together and enjoy the chaos
 
 ## Backstory ##
 
