@@ -1330,6 +1330,9 @@ Javelin.Engine.prototype.reset = function() {
     //via the environment
     if (this.config.loader) {
         this.loader = new Javelin.AssetLoader(this.config.loader.assetUrl || '');
+        if (this.config.preLoad) {
+            this.loader.loadAssets(this.config.preLoad);
+        }
     }
     
 };

@@ -24,6 +24,9 @@ Plan10.config = {
     loader: {
         assetUrl: "/plan10/"
     },
+    preLoad: [
+        'assets/grits/grits_effects.atlas.json'
+    ],
     plugins: {
         'audio': {},
         'input': {
