@@ -4,7 +4,22 @@ body {
     background-repeat: no-repeat;     
     background-position: center top;  
 }
-            
+
+#loading {
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+    background-color: #444;
+    color: #fff;
+    z-index: 20;
+}
+
+#loadingText {
+    color: #fff;
+    font-size: 40px;
+    margin: 0px auto;
+}
+
 #game {
     margin: 0px auto;
     margin-top: 80px; 

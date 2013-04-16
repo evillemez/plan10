@@ -5,6 +5,7 @@ var game; //poluting the global namespace for fun and profit... and debugging!
 //use jQuery to do boring DOM stuff when it loads
 $(function() {
     $('#game').hide();
+    $('#loading').hide();
 
     //check for debug flag
     Plan10.config.debug = getParameterByName('debug') || false;
@@ -23,18 +24,22 @@ $(function() {
     
     //set up intro and play buttons on splash screen
     $('#intro-button').mouseup(function() {
+        $('#loading').show();
         if (!game.loading) {
             game.loadScene('plan10.intro', function() {
                 $('#splash').hide();
                 $('#game').show();
+                $('#loading').hide();
                 game.run();
             });
         }
     });
 
     $('#play-button').mouseup(function() {
+        $('#loading').show();
         if (!game.loading) {
             game.loadScene('plan10.main', function() {
+                $('#loading').hide();
                 $('#splash').hide();
                 $('#game').show();
                 game.run();
