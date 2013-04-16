@@ -28,15 +28,15 @@ Plan10.Component.Timer = function(gameObject, component) {
         timeLeft -= deltaTime;
         
         //play warning if little time left
-        if (false) {
-            audio.playOnce('assets/kent/script/time.mp3');
+        if (!warningPlayed && timeLeft <= 60) {
+            audio.playOnce('assets/kent/script-20.mp3');
             warningPlayed = true;
             timeLow = true;
         }
         
         //trigger loss if time expires
         if (timeLeft <= 0) {
-            gameObject.engine.loadScene('plan10.intro');
+            gameObject.engine.loadScene('plan10.lose_ending');
         }
     });
     
