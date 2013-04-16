@@ -22,7 +22,7 @@ Plan10.config = {
     autoregisterPrefabs: Plan10.Prefab,
     autoregisterScenes: Plan10.Scene,
     loader: {
-        assetUrl: "http://localhost/plan10/"
+        assetUrl: "/plan10/"
     },
     plugins: {
         'audio': {},
