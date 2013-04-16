@@ -1722,10 +1722,20 @@ Javelin.Engine.prototype.loadScene = function(name, callback) {
         this.instantiate(scene.objects[i]);
     }
     
-    if (callback) {
-        callback();
+    if (scene.preLoad) {
+        this.loadAssets(scene.preLoad, function(assets) {
+            if (callback) {
+                callback();
+            } else {
+                this.run();
+            }
+        });
     } else {
-        this.run();
+        if (callback) {
+            callback();
+        } else {
+            this.run();
+        }
     }
 };
 

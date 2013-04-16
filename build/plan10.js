@@ -1519,6 +1519,10 @@ Plan10.Scene.Lose = {
 
 Plan10.Scene.Main = {
     name: "plan10.main",
+    preLoad: [
+        'assets/grits/grits_effects.atlas.json',
+        'asteroid.png'
+    ],
     objects: [
         'plan10.player',            //in src/prefabs/Player.js
         'plan10.turretManager',     //in src/prefabs/TurretManager.js
