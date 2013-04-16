@@ -1,0 +1,70 @@
+{
+    "frames": [
+        {
+            "image": "assets/monologue_image/script-01.png",
+            "time": "15",
+            "sound": "assets/monologue_sound/script-01.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-02.png",
+            "time": "4",
+            "sound": "assets/monologue_sound/script-02.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-03.png",
+            "time": "6",
+            "sound": "assets/monologue_sound/script-03.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-04.png",
+            "time": "12",
+            "sound": "assets/monologue_sound/script-04.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-05.png",
+            "time": "12",
+            "sound": "assets/monologue_sound/script-05.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-06.png",
+            "time": "4",
+            "sound": "assets/monologue_sound/script-06.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-07.png",
+            "time": "10",
+            "sound": "assets/monologue_sound/script-07.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-08.png",
+            "time": "6",
+            "sound": "assets/monologue_sound/script-08.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-09.png",
+            "time": "12",
+            "sound": "assets/monologue_sound/script-09.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-10.png",
+            "time": "8",
+            "sound": "assets/monologue_sound/script-10.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-11.png",
+            "time": "8",
+            "sound": "assets/monologue_sound/script-11.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-12.png",
+            "time": "12",
+            "sound": "assets/monologue_sound/script-12.mp3"
+        },
+        {
+            "image": "assets/monologue_image/script-13.png",
+            "time": "12",
+            "sound": "assets/monologue_sound/script-13.mp3"
+        }
+
+    ]
+}

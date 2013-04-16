@@ -1,0 +1,9 @@
+{
+    "frames": [
+        {
+            "image": "assets/lose.png",
+            "time": "15",
+            "sound": "assets/kent/plan10script25.mp3"
+        }
+    ]
+}
