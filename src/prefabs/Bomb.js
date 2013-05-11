@@ -7,6 +7,7 @@ Plan10.Prefab.Bomb = {
             spatial: false,
             volume: 0.8
         },
+        'plan10.teleport': {},
         'plan10.projectile': {
             velocity: 100000,
             fireSound: 'assets/kent/fx/FX-laybomb.mp3',

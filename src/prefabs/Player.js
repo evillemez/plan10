@@ -31,7 +31,7 @@ Plan10.Prefab.Player = {
         'rigidbody2d': {
             radius: 40,
             density: 0.0001,
-            restitution: 0.0,
+            restitution: 0.4,
             friction: 0.0,
             damping: 0.8,
             angularDamping: 1

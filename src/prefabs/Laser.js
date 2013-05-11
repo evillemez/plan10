@@ -7,6 +7,7 @@ Plan10.Prefab.Laser = {
             spatial: false,
             volume: 0.8
         },
+        'plan10.teleport': {},
         'plan10.projectile': {
             damage: 50,
             velocity: 100000,
@@ -19,7 +20,8 @@ Plan10.Prefab.Laser = {
             width: 20,
             density: 0.0,
             damping: 0.0,
-            angularDamping: 0.0
+            angularDamping: 0.0,
+            trigger: false
         },
         'spriteAnimator': {
             animations: {
