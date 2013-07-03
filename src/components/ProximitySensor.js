@@ -44,7 +44,7 @@ Plan10.Component.ProximitySensor = function(gameObject, component) {
     //parent/child relationship working with transforms & rigidbodies in Javelin
     //in time for the contest
     component.$on('box2d.update', function() {
-        rigidbody.getBody().SetPosition(new box2d.Vec2(transform.position.x, transform.position.y));
+        rigidbody.setPosition(transform.position.x, transform.position.y);
     });
 };
 Plan10.Component.ProximitySensor.alias = 'plan10.proximitySensor';

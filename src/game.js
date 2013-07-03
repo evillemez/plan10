@@ -39,6 +39,7 @@ Plan10.config = {
             }
         },
         'box2d': {
+			pixelsPerMeter: 30,
             stepsPerSecond: 1000/60,
             stepHZ: 1.0/60.0,
             velocityIterations: 10,

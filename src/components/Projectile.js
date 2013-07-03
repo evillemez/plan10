@@ -6,7 +6,7 @@
  */
 Plan10.Component.Projectile = function(gameObject, component) {
     component.damage = null;
-    component.velocity = 100;
+    component.velocity = 10;
     component.implode = false;
     component.fireSound = null;
     component.detonateSound = null;

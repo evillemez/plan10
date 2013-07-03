@@ -9,7 +9,7 @@ Plan10.Prefab.BlackHole = {
         },
         'plan10.teleport': {},
         'plan10.projectile': {
-            velocity: 100000,
+            velocity: 10,
             fireSound: 'assets/kent/fx/FX-laybomb.mp3',
             explosionPrefab: 'plan10.blackHoleDetonation',
             timeToLive: 6000

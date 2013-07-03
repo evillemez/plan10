@@ -6,11 +6,12 @@
 Plan10.Component.Teleport = function(go, component) {
     
     var rb = go.getComponent('rigidbody2d');
+	var transform = go.getComponent('transform2d');
     var box2d = go.engine.getPlugin('box2d');
     
-    component.$on('box2d.update', function() {
-        var x = rb.getBody().GetPosition().x;
-        var y = rb.getBody().GetPosition().y;
+    component.$on('box2d.lateUpdate', function() {
+        var x = transform.position.x;
+        var y = transform.position.y;
         var changed = false;
         var newX = x;
         var newY = y;
@@ -36,7 +37,7 @@ Plan10.Component.Teleport = function(go, component) {
         }
         
         if (changed) {
-            rb.getBody().SetPosition(new box2d.Vec2(newX, newY));
+            rb.setPosition(newX, newY);
         }
     });
 };

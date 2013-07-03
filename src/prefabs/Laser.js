@@ -10,7 +10,7 @@ Plan10.Prefab.Laser = {
         'plan10.teleport': {},
         'plan10.projectile': {
             damage: 50,
-            velocity: 100000,
+            velocity: 15,
             fireSound: 'assets/kent/fx/FX-pew.mp3',
             explosionPrefab: 'plan10.laserImpact',
             timeToLive: 6000
@@ -18,7 +18,7 @@ Plan10.Prefab.Laser = {
         'rigidbody2d': {
             height: 3,
             width: 20,
-            density: 0.0,
+            density: 0.2,
             damping: 0.0,
             angularDamping: 0.0,
             trigger: false

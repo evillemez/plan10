@@ -15,7 +15,7 @@ Plan10.Component.TurretController = function(gameObject, component) {
     component.maxEnergy = 100;
     component.currentEnergy = 100;
     component.laserPrefab = null;
-    component.driftForce = 10000;
+    component.driftForce = 10;
     component.driftAngle = 180;
     
     var target = null;

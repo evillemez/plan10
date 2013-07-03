@@ -21,8 +21,9 @@ Plan10.Prefab.Asteroid = {
         'rigidbody2d': {
             height: 100,
             width: 60,
-            density: 0.5,
-            dampening: 0.8
+            density: 0.3,
+            damping: 0.8,
+			friction: 0.5
         }
     }
 };

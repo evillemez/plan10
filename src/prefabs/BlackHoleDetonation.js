@@ -4,7 +4,7 @@ Plan10.Prefab.BlackHoleDetonation = {
     name: "plan10.blackHoleDetonation",
     components: {
         'plan10.detonation': {
-            detonationForce: 9999000,
+            detonationForce: 200,
             detonationRadius: 150,
             detonationSound: 'assets/kent/fx/FX-blackhole.mp3',
             implode: true

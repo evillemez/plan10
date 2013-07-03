@@ -4,7 +4,7 @@ Plan10.Prefab.BombExplosion = {
     name: "plan10.bombExplosion",
     components: {
         'plan10.detonation': {
-            detonationForce: 9999000,
+            detonationForce: 2000,
             detonationRadius: 150,
             detonationSound: 'assets/kent/fx/FX-bomb.mp3',
             implode: false

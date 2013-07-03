@@ -23,14 +23,14 @@ Plan10.Prefab.Turret = {
             currentEnergy: 100,
             fireRate: 500,
             laserPrefab: 'plan10.laser',
-            driftForce: 10000,
+            driftForce: 1,
             driftAngle: 180
         },
         'rigidbody2d': {
             radius: 20,
             density: 1.0,
-            restitution: 0.0,
-            friction: 0.0,
+            restitution: 0.5,
+            friction: 0.5,
             damping: 1,
             angularDamping: 0.2,
             fixedRotation: true
